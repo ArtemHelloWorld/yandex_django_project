@@ -13,19 +13,19 @@ class Profile(django.db.models.Model):
     )
 
     birthday = django.db.models.DateField(
-        null=True, blank=True, verbose_name="дата рождения"
+        null=True, blank=True, verbose_name='дата рождения'
     )
 
     image = django.db.models.ImageField(
-        upload_to="item/main/%Y/%m/%d",
+        upload_to='item/main/%Y/%m/%d',
         null=True,
         blank=True,
-        verbose_name="аватарка",
+        verbose_name='аватарка',
     )
 
     class Meta:
-        verbose_name = "профиль"
-        verbose_name_plural = "профиль"
+        verbose_name = 'профиль'
+        verbose_name_plural = 'профиль'
 
 
 class User(django.contrib.auth.models.User):

@@ -6,11 +6,11 @@ import django.core.mail
 import django.core.signing
 import django.urls
 
-MESSAGE_REGISTRATION = "Для завершения регистрации перейдите по ссылке:\n{}"
+MESSAGE_REGISTRATION = 'Для завершения регистрации перейдите по ссылке:\n{}'
 MESSAGE_ACTIVATION_BACK = (
-    "Вы превысили максимально количство "
-    "попыток входа в аккаунт.\n"
-    "Для активации перейдите по ссылке:\n{}"
+    'Вы превысили максимально количство '
+    'попыток входа в аккаунт.\n'
+    'Для активации перейдите по ссылке:\n{}'
 )
 
 
@@ -27,7 +27,7 @@ def send_email_with_activation_link(request, user, activation_back=False):
         )
 
     django.core.mail.send_mail(
-        subject="Subject",
+        subject='Subject',
         message=message,
         from_email=django.conf.settings.DEFAULT_FROM_EMAIL,
         recipient_list=[user.email],
@@ -37,14 +37,14 @@ def send_email_with_activation_link(request, user, activation_back=False):
 def generate_activation_link(user, activation_back=False):
     signer = django.core.signing.TimestampSigner()
     if activation_back:
-        viewname = "users:back_activate"
+        viewname = 'users:back_activate'
     else:
-        viewname = "users:signup_activate"
+        viewname = 'users:signup_activate'
 
     activation_code = signer.sign(user.username)
 
     link = django.urls.reverse(
-        viewname, kwargs={"activation_code": activation_code}
+        viewname, kwargs={'activation_code': activation_code}
     )
     return link
 
@@ -63,22 +63,22 @@ def validate_activation_link(value, **kwargs):
 
 
 def generate_normalize_email(email):
-    if "@" in email:
+    if '@' in email:
         email = email.lower()
-        name, domain = email.split("@")
+        name, domain = email.split('@')
 
-        name = name.split("+")[0]
+        name = name.split('+')[0]
 
-        if "ya.ru" == domain:
-            domain = "yandex.ru"
+        if 'ya.ru' == domain:
+            domain = 'yandex.ru'
 
-        if "gmail.com" == domain:
-            name = name.replace(".", "")
+        if 'gmail.com' == domain:
+            name = name.replace('.', '')
 
-        if "yandex.ru" == domain:
-            name = name.replace(".", "-")
+        if 'yandex.ru' == domain:
+            name = name.replace('.', '-')
 
-        return f"{name}@{domain}"
+        return f'{name}@{domain}'
 
     else:
         return email

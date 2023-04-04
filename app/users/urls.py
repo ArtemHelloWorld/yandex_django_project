@@ -1,8 +1,7 @@
-import django.contrib.admin
-import django.contrib.auth.urls
-import django.contrib.auth.views
-import django.contrib.auth.forms
 import django.conf
+import django.contrib.admin
+import django.contrib.auth.forms
+import django.contrib.auth.views
 import django.urls
 
 import users.forms
@@ -13,79 +12,78 @@ app_name = 'users'
 
 urlpatterns = [
     django.urls.path(
-        "login/",
+        'login/',
         django.contrib.auth.views.LoginView.as_view(
-            template_name="users/login/login.html",
+            template_name='users/login/login.html',
             form_class=users.forms.CustomAuthenticationForm,
         ),
-        name="login",
+        name='login',
     ),
     django.urls.path(
-        "logout/",
+        'logout/',
         django.contrib.auth.views.LogoutView.as_view(),
-        name="logout",
+        name='logout',
     ),
     django.urls.path(
-        "password_change/",
+        'password_change/',
         django.contrib.auth.views.PasswordChangeView.as_view(
-            template_name="users/password_change/password_change.html"
+            template_name='users/password_change/password_change.html'
         ),
-        name="password_change",
+        name='password_change',
     ),
     django.urls.path(
-        "password_change/done/",
+        'password_change/done/',
         django.contrib.auth.views.PasswordChangeDoneView.as_view(
-            template_name="users/password_change/password_change_done.html"
+            template_name='users/password_change/password_change_done.html'
         ),
-        name="password_change_done",
+        name='password_change_done',
     ),
     django.urls.path(
-        "password_reset/",
+        'password_reset/',
         django.contrib.auth.views.PasswordResetView.as_view(
-            template_name="users/password_reset/password_reset.html",
+            template_name='users/password_reset/password_reset.html',
             form_class=django.contrib.auth.forms.PasswordResetForm,
             from_email=django.conf.settings.DEFAULT_FROM_EMAIL,
         ),
-        name="password_reset",
+        name='password_reset',
     ),
     django.urls.path(
-        "password_reset/done/",
+        'password_reset/done/',
         django.contrib.auth.views.PasswordResetDoneView.as_view(
-            template_name="users/password_reset/password_reset_done.html"
+            template_name='users/password_reset/password_reset_done.html'
         ),
-        name="password_reset_done",
+        name='password_reset_done',
     ),
     django.urls.path(
-        "reset/<uidb64>/<token>/",
+        'reset/<uidb64>/<token>/',
         django.contrib.auth.views.PasswordResetConfirmView.as_view(
-            template_name="users/password_reset/password_reset_confirm.html"
+            template_name='users/password_reset/password_reset_confirm.html'
         ),
-        name="password_reset_confirm",
+        name='password_reset_confirm',
     ),
     django.urls.path(
-        "reset/done/",
+        'reset/done/',
         django.contrib.auth.views.PasswordResetCompleteView.as_view(
-            template_name="users/password_reset/password_reset_complete.html"
+            template_name='users/password_reset/password_reset_complete.html'
         ),
-        name="password_reset_complete",
+        name='password_reset_complete',
     ),
     django.urls.path(
-        "signup/", users.views.SignupView.as_view(), name="signup"
+        'signup/', users.views.SignupView.as_view(), name='signup'
     ),
     django.urls.path(
-        "signup_complete/",
+        'signup_complete/',
         users.views.SignupCompleteView.as_view(),
-        name="signup_complete",
+        name='signup_complete',
     ),
     django.urls.path(
-        "signup/activate/<str:activation_code>",
+        'signup/activate/<str:activation_code>',
         users.views.SignupActivateView.as_view(),
-        name="signup_activate",
+        name='signup_activate',
     ),
     django.urls.path(
-        "back/activate/<str:activation_code>",
+        'back/activate/<str:activation_code>',
         users.views.BackActivateView.as_view(),
-        name="back_activate",
+        name='back_activate',
     ),
-
 ]

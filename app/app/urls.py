@@ -4,7 +4,6 @@ import django.contrib.admin
 import django.contrib.auth.urls
 import django.urls
 
-
 urlpatterns = [
     django.urls.path('users/', django.urls.include('users.urls')),
     django.urls.path('users/', django.urls.include(django.contrib.auth.urls)),

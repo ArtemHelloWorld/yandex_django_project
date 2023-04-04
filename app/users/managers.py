@@ -6,6 +6,5 @@ class MyUserManager(django.db.models.Manager):
         return (
             super(MyUserManager, self)
             .get_queryset()
-            .prefetch_related("profile")
+            .prefetch_related('profile')
         )
-

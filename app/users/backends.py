@@ -9,13 +9,13 @@ import users.services
 
 class AuthByEmailOrUsernameBackend(django.contrib.auth.backends.BaseBackend):
     def authenticate(self, request, username=None, password=None):
-        if "@" in username:
+        if '@' in username:
             query_filter = {
-                "email": users.services.generate_normalize_email(username)
+                'email': users.services.generate_normalize_email(username)
             }
 
         else:
-            query_filter = {"username": username}
+            query_filter = {'username': username}
 
         try:
             user = django.contrib.auth.models.User.objects.get(**query_filter)
@@ -25,11 +25,11 @@ class AuthByEmailOrUsernameBackend(django.contrib.auth.backends.BaseBackend):
         if user.check_password(password):
             return user
         else:
-            count = request.session.get("load_count", 0) + 1
-            request.session["load_count"] = count
+            count = request.session.get('load_count', 0) + 1
+            request.session['load_count'] = count
 
             if count == django.conf.settings.MAX_FAILED_LOGIN_ATTEMPTS:
-                request.session["load_count"] = 0
+                request.session['load_count'] = 0
 
                 user.is_active = False
                 user.save()
@@ -39,9 +39,9 @@ class AuthByEmailOrUsernameBackend(django.contrib.auth.backends.BaseBackend):
                 )
 
                 raise django.forms.ValidationError(
-                    "Вы превысили количество попыток войти. "
-                    "На вашу почту отправлено письмо "
-                    "cо ссылкой для восстановления аккаунта"
+                    'Вы превысили количество попыток войти. '
+                    'На вашу почту отправлено письмо '
+                    'cо ссылкой для восстановления аккаунта'
                 )
             return None
 
