@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans "Регистрация" %}
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans "На вашу почту отправлена ссылка для завершения регистрации" %}</h1>
+  <h3>{% trans "Ссылка действует 12 часов" %}</h3>
+  <a href="{% url 'users:login' %}" type="button" class="btn btn-outline-light me-2">{% trans "Войти" %}</a>
+{% endblock %}
+
