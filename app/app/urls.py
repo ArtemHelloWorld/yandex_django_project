@@ -1,9 +1,15 @@
 import django.conf
 import django.conf.urls.static
 import django.contrib.admin
+import django.contrib.auth.urls
 import django.urls
 
+
 urlpatterns = [
+    django.urls.path('users/', django.urls.include('users.urls')),
+    django.urls.path('users/', django.urls.include(django.contrib.auth.urls)),
+    django.urls.path('tinymce/', django.urls.include('tinymce.urls')),
+    django.urls.path('tz_detect/', django.urls.include('tz_detect.urls')),
     django.urls.path('admin/', django.contrib.admin.site.urls),
 ]
 
