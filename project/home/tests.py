@@ -12,7 +12,5 @@ class HomepageTests(django.test.TestCase):
         super().setUpClass()
 
     def test_homepage(self):
-        response = self.client.get(django.urls.reverse("home:home"))
+        response = self.client.get(django.urls.reverse('home:home'))
         self.assertEqual(response.status_code, 200)
-
-
