@@ -27,6 +27,8 @@ jobs:
         pip install -r requirements/requirements-prod.txt
         pip install -r requirements/requirements-test.txt
         pip install -r requirements/requirements-dev.txt
+    - name: Creating Environmental File
+      run: |
         cp .env-example .env
     - name: Run Tests
       run: |
