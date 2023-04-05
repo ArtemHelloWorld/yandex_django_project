@@ -1,0 +1,29 @@
+{% extends 'users/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans "Логин" %}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class=" mt-md-4">
+
+    <h1 class="fw-bold mb-2">{% trans "Логин" %}</h1>
+    <p class="text-white-50 mb-5">Введите свой логин и пароль!</p>
+
+    {% trans "Войти" as btn_text %}
+    {% include "users/form.html" with form=form btn_text=btn_text %}
+
+  </div>
+
+  <div>
+    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="{% url 'users:password_reset' %}">{% trans "Забыли пароль?" %}</a></p>
+    <p class="mb-0">Ещё нет аккаунта? <a href="{% url 'users:signup' %}" class="text-white-50 fw-bold">Регистрация</a></p>
+  </div>
+
+{% endblock %}
+
+
