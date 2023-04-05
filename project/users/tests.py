@@ -16,12 +16,30 @@ class SignUpTests(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
 
-    def test_signup_incorrect_password(self):
+    def test_signup_not_same_passwords(self):
+        count = django.contrib.auth.models.User.objects.count()
+        form_data = {
+            'username': 'testusername',
+            'email': 'testmail@mail.ru',
+            'password1': 'Testpassword483',
+            'password2': 'Testpassword',
+        }
+        self.client.post(
+            django.shortcuts.reverse('users:signup'),
+            data=form_data,
+            follow=True,
+        )
+        self.assertEqual(
+            count, django.contrib.auth.models.User.objects.count()
+        )
+
+    def test_signup_incorrect_passwords(self):
         count = django.contrib.auth.models.User.objects.count()
         form_data = {
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': '12345',
+            'password2': '12345',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -38,6 +56,7 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -54,6 +73,7 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -73,6 +93,7 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -92,6 +113,7 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
         response = self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -108,6 +130,7 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -123,6 +146,7 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -154,6 +178,7 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -188,6 +213,7 @@ class LoginTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
 
         self.user = self.client.post(
@@ -285,6 +311,7 @@ class EmailFieldNormalizationTest(django.test.TestCase):
             'username': 'testusername',
             'email': email,
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
 
         self.user = self.client.post(
@@ -308,14 +335,14 @@ class EmailFieldNormalizationTest(django.test.TestCase):
             ('10', 't.e.s.t.m.a.i.l@ya.ru', 't-e-s-t-m-a-i-l@yandex.ru'),
             ('11', 't-e-s-t-m-a-i-l@yandex.ru', 't.e.s.t.m.a.i.l@ya.ru'),
             (
-                '12',
-                'T.e.S.t.M.a.I.l+tEsTtag@ya.ru',
-                't-E-s-T-m-A-i-L@yandex.ru',
+                    '12',
+                    'T.e.S.t.M.a.I.l+tEsTtag@ya.ru',
+                    't-E-s-T-m-A-i-L@yandex.ru',
             ),
             (
-                '13',
-                'T-e-S-t-M-a-I-l@yandex.ru',
-                't.E.s.T.m.A.i.L+TESTTAG@ya.ru',
+                    '13',
+                    'T-e-S-t-M-a-I-l@yandex.ru',
+                    't.E.s.T.m.A.i.L+TESTTAG@ya.ru',
             ),
         ]
     )
@@ -371,6 +398,7 @@ class ReactivationClass(django.test.TestCase):
             'username': 'testusername',
             'email': 'testemail@mail.ru',
             'password1': 'Testpassword483',
+            'password2': 'Testpassword483',
         }
 
         self.user = self.client.post(
