@@ -27,6 +27,7 @@ jobs:
         pip install -r requirements/requirements-prod.txt
         pip install -r requirements/requirements-test.txt
         pip install -r requirements/requirements-dev.txt
+        cp .env-example .env
     - name: Run Tests
       run: |
         cd project
