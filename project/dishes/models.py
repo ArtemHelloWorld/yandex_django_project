@@ -1,3 +1,5 @@
+import datetime
+
 import django.db.models
 
 import core.models
@@ -99,9 +101,10 @@ class Dish(django.db.models.Model):
         verbose_name='сложность блюда',
         help_text='Сложность блюда от 1 до 10',
     )
-
-    cooking_time = django.db.models.PositiveSmallIntegerField(
-        verbose_name='время готовки', help_text='Время готовки в часах'
+    cooking_time = django.db.models.DurationField(
+        verbose_name='время готовки',
+        help_text='Время готовки в часах',
+        default=datetime.timedelta(minutes=30)
     )
 
     date_created = django.db.models.DateTimeField(
