@@ -183,7 +183,6 @@ class LoginTests(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
 
-
     def register_user(self):
         form_data_signup = {
             'username': 'testusername',
