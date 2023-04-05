@@ -29,6 +29,7 @@ ALLOWED_HOSTS = os.getenv(
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
+    'dishes.apps.DishesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
