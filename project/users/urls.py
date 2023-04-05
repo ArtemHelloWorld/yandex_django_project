@@ -105,8 +105,8 @@ urlpatterns = [
         name='signup_activate',
     ),
     django.urls.path(
-        'back/activate/<str:activation_code>',
-        users.views.BackActivateView.as_view(),
-        name='back_activate',
+        'reactivation/<str:activation_code>',
+        users.views.ReactivationView.as_view(),
+        name='reactivation',
     ),
 ]

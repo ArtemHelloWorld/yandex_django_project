@@ -20,7 +20,7 @@ if django.conf.settings.DEBUG:
             '__debug__/', django.urls.include(debug_toolbar.urls)
         ),
     )
-if django.conf.settings.DEBUG:
+
     urlpatterns += django.conf.urls.static.static(
         django.conf.settings.MEDIA_URL,
         document_root=django.conf.settings.MEDIA_ROOT,

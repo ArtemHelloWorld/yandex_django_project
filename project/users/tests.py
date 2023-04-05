@@ -12,22 +12,16 @@ import users.models
 import users.services
 
 
-@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class SignUpTests(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
-
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
 
     def test_signup_incorrect_password(self):
         count = django.contrib.auth.models.User.objects.count()
         form_data = {
             'username': 'testusername',
             'email': 'testmail@mail.ru',
-            'password1': 'Testpassword483',
-            'password2': 'Testpassword',
+            'password1': '12345',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -44,7 +38,6 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -61,7 +54,6 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -81,7 +73,6 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -101,7 +92,6 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
         response = self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -118,7 +108,6 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -134,7 +123,6 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -166,7 +154,6 @@ class SignUpTests(django.test.TestCase):
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
         self.client.post(
             django.shortcuts.reverse('users:signup'),
@@ -192,21 +179,16 @@ class SignUpTests(django.test.TestCase):
             )
 
 
-@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class LoginTests(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
 
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
 
     def register_user(self):
         form_data_signup = {
             'username': 'testusername',
             'email': 'testmail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
 
         self.user = self.client.post(
@@ -290,7 +272,6 @@ class LoginTests(django.test.TestCase):
         self.assertFalse(response.context['user'].is_authenticated)
 
 
-@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class EmailFieldNormalizationTest(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
@@ -305,7 +286,6 @@ class EmailFieldNormalizationTest(django.test.TestCase):
             'username': 'testusername',
             'email': email,
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
 
         self.user = self.client.post(
@@ -379,8 +359,7 @@ class EmailFieldNormalizationTest(django.test.TestCase):
         self.assertFalse(response.context['user'].is_authenticated)
 
 
-@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
-class ActivationBackClass(django.test.TestCase):
+class ReactivationClass(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
 
@@ -393,7 +372,6 @@ class ActivationBackClass(django.test.TestCase):
             'username': 'testusername',
             'email': 'testemail@mail.ru',
             'password1': 'Testpassword483',
-            'password2': 'Testpassword483',
         }
 
         self.user = self.client.post(
@@ -442,7 +420,7 @@ class ActivationBackClass(django.test.TestCase):
         with freezegun.freeze_time('2023-03-25 23:30:00'):
             self.client.get(
                 django.urls.reverse(
-                    'users:back_activate',
+                    'users:reactivation',
                     kwargs={'activation_code': email_body.split('/')[-1]},
                 )
             )
@@ -474,7 +452,7 @@ class ActivationBackClass(django.test.TestCase):
         with freezegun.freeze_time('2023-03-26 00:30:00'):
             self.client.get(
                 django.urls.reverse(
-                    'users:back_activate',
+                    'users:reactivation',
                     kwargs={'activation_code': email_body.split('/')[-1]},
                 )
             )
