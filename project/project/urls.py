@@ -10,6 +10,7 @@ urlpatterns = [
     django.urls.path('tinymce/', django.urls.include('tinymce.urls')),
     django.urls.path('tz_detect/', django.urls.include('tz_detect.urls')),
     django.urls.path('admin/', django.contrib.admin.site.urls),
+    django.urls.path('', django.urls.include('home.urls')),
 ]
 
 if django.conf.settings.DEBUG:

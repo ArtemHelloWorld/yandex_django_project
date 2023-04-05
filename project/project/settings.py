@@ -28,6 +28,7 @@ ALLOWED_HOSTS = os.getenv(
 # Application definition
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
+    'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -160,5 +161,5 @@ ACTIVATE_USERS = (
 MAX_FAILED_LOGIN_ATTEMPTS = int(os.getenv('MAX_FAILED_LOGIN_ATTEMPTS', 3))
 
 LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL = '/users/login/'  # change to '/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
