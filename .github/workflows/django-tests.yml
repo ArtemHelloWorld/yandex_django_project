@@ -29,5 +29,5 @@ jobs:
         pip install -r requirements/requirements-dev.txt
     - name: Run Tests
       run: |
-        cd app
+        cd project
         python manage.py test
