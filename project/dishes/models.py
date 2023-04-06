@@ -104,7 +104,7 @@ class Dish(django.db.models.Model):
     cooking_time = django.db.models.DurationField(
         verbose_name='время готовки',
         help_text='Время готовки',
-        default=datetime.timedelta(minutes=30)
+        default=datetime.timedelta(minutes=30),
     )
 
     date_created = django.db.models.DateTimeField(

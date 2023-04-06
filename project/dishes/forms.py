@@ -1,12 +1,11 @@
 import django.forms
 
+import core.forms
 import dishes.models
-import users.forms
 
 
 class NewDishesForm(
-    users.forms.BootstrapFormMixin,
-    django.forms.ModelForm
+    core.forms.BootstrapClassAndPlaceholderFormMixin, django.forms.ModelForm
 ):
     class Meta:
         model = dishes.models.Dish
@@ -16,5 +15,5 @@ class NewDishesForm(
             'ingredients',
             'recipe',
             'complexity',
-            'cooking_time'
+            'cooking_time',
         )
