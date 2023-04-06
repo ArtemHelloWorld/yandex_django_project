@@ -5,6 +5,7 @@ import django.contrib.auth.urls
 import django.urls
 
 urlpatterns = [
+    django.urls.path('dishes/', django.urls.include('dishes.urls')),
     django.urls.path('users/', django.urls.include('users.urls')),
     django.urls.path('users/', django.urls.include(django.contrib.auth.urls)),
     django.urls.path('tinymce/', django.urls.include('tinymce.urls')),
