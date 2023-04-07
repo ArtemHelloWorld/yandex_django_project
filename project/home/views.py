@@ -1,10 +1,13 @@
 import django.views.generic
 
+import dishes.models
 
-class HomeView(django.views.generic.TemplateView):
+
+class HomeView(django.views.generic.ListView):
     template_name = 'home/home.html'
+    context_object_name = 'dishes'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Главная'
-        return context
+    def get_queryset(self):
+        return dishes.models.Dish.objects.all()
+
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block title %}{{ dish.name }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+  
+    <div class="col-md-6">
+      <h1>{{ dish.name }}</h1>
+      <p>{{ dish.type.name }}</p>
+      <p><strong>Ингредиенты: </strong>{% for ingredient in dish.ingredients.all %} {{ ingredient.ingredient.name  }} {% endfor %}</p>
+      <p>{{ dish.recipe|safe }}</p>
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

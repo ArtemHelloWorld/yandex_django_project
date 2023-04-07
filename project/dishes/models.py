@@ -1,6 +1,7 @@
 import datetime
 
 import django.db.models
+import django.urls
 
 import core.models
 import users.models
@@ -115,9 +116,14 @@ class Dish(django.db.models.Model):
         auto_now=True, verbose_name='дата последнего изменения'
     )
 
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return django.urls.reverse(
+            'dishes:dish_detail', kwargs={'dish_pk': self.pk}
+        )
+
     class Meta:
         verbose_name = 'блюдо'
         verbose_name_plural = 'блюда'
-
-    def __str__(self):
-        return self.name

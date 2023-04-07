@@ -6,6 +6,9 @@ app_name = 'dishes'
 
 urlpatterns = [
     django.urls.path(
-        'new', dishes.views.NewDishesView.as_view(), name='new_dishes'
+        'new', dishes.views.NewDishesView.as_view(), name='dish_new'
     ),
+    django.urls.path(
+        '<int:dish_pk>', dishes.views.DishDetailView.as_view(), name='dish_detail'
+    )
 ]

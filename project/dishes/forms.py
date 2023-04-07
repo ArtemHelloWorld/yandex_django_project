@@ -1,5 +1,6 @@
 import django.forms
-
+import django.contrib.admin.widgets
+import django.db.models
 import core.forms
 import dishes.models
 
@@ -17,3 +18,6 @@ class NewDishesForm(
             'complexity',
             'cooking_time',
         )
+
+
+
