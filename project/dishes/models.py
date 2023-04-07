@@ -16,15 +16,6 @@ class Ingredient(core.models.NameFieldMixin):
         return self.name
 
 
-class QuantityType(core.models.NameFieldMixin):
-    class Meta:
-        verbose_name = 'граммовка'
-        verbose_name_plural = 'граммовки'
-
-    def __str__(self):
-        return self.name
-
-
 class DishType(core.models.NameFieldMixin):
     class Meta:
         verbose_name = 'тип блюда'
@@ -34,7 +25,28 @@ class DishType(core.models.NameFieldMixin):
         return self.name
 
 
-class IngredientsInstance(django.db.models.Model):
+class IngredientInstance(django.db.models.Model):
+    KILOGRAMS = 'kg'
+    GRAM = 'gram'
+    LITERS = 'liters'
+    MILLILITERS = 'milliliters'
+    TABLE_SPOON = 'table spoon'
+    TEA_SPOON = 'tea spoon'
+
+    VOLUME_TYPE_CHOICES = [
+        (KILOGRAMS, 'килограмм'),
+        (GRAM, 'грамм'),
+        (LITERS, 'литр'),
+        (MILLILITERS, 'миллилитр'),
+        (TABLE_SPOON, 'столовая ложка'),
+        (TEA_SPOON, 'чайная ложка'),
+
+    ]
+    dish = django.db.models.ForeignKey(
+        'Dish',
+        on_delete=django.db.models.CASCADE,
+        related_name='ingredients',
+    )
     ingredient = django.db.models.ForeignKey(
         Ingredient,
         on_delete=django.db.models.CASCADE,
@@ -43,16 +55,16 @@ class IngredientsInstance(django.db.models.Model):
     )
 
     quantity = django.db.models.PositiveIntegerField(
-        verbose_name='количество ингредиента',
-        help_text='Укажите количество',
+        default=0,
+        verbose_name='объём ингредиента',
+        help_text='Укажите объём ингредиента',
     )
 
-    quantity_type = django.db.models.ForeignKey(
-        QuantityType,
-        null=True,
-        on_delete=django.db.models.SET_NULL,
-        verbose_name='тип граммовки',
-        help_text='Укажите тип граммовки ингредиента. Максимум 100 символов',
+    quantity_type = django.db.models.CharField(
+        choices=VOLUME_TYPE_CHOICES,
+        max_length=11,
+        verbose_name='тип объёма',
+        help_text='Укажите тип объёма ингредиента. Максимум 100 символов',
     )
 
     class Meta:
@@ -67,7 +79,7 @@ class Dish(django.db.models.Model):
     author = django.db.models.ForeignKey(
         users.models.User,
         null=True,
-        on_delete=django.db.models.SET_NULL,
+        on_delete=django.db.models.CASCADE,
         verbose_name='автор блюда',
     )
 
@@ -85,22 +97,16 @@ class Dish(django.db.models.Model):
         help_text='Укажите тип блюда',
     )
 
-    ingredients = django.db.models.ManyToManyField(
-        IngredientsInstance,
-        verbose_name='ингредиенты',
-        help_text='Перечислите необходимые ингредиенты',
-    )
-
     recipe = django.db.models.TextField(
         verbose_name='рецепт', help_text='Рецепт по приготовлению'
     )
 
     complexity = core.models.IntegerRangeField(
         min_value=1,
-        max_value=10,
-        default=10,
+        max_value=5,
+        default=5,
         verbose_name='сложность блюда',
-        help_text='Сложность блюда от 1 до 10',
+        help_text='Сложность блюда от 1 до 5',
     )
     cooking_time = django.db.models.DurationField(
         verbose_name='время готовки',
