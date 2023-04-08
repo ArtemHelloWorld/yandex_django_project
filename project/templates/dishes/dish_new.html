@@ -21,7 +21,7 @@
       {% for field in new_dish_form %}
         <div class="form-outline form-white mb-4">
           {% for error in field.errors %}
-            {{ error|escape|linebreaks }}
+            <div class="text-danger">{{ error|escape|linebreaks }}</div>
           {% endfor %}
           {{ field.help_text }}
           {{ field }}

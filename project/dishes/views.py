@@ -40,7 +40,16 @@ class NewDishView(
                 ingredient.dish = dish
                 ingredient.save()
 
-        return django.shortcuts.redirect('home:home')
+            return django.shortcuts.redirect('home:home')
+        else:
+            return django.shortcuts.render(
+                request,
+                self.template_name,
+                {
+                    'new_dish_form': new_dish_form,
+                    'ingredient_formset': ingredient_formset,
+                }
+            )
 
 
 class DishDetailView(django.views.generic.DetailView):

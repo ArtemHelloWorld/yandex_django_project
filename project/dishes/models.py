@@ -1,5 +1,6 @@
 import datetime
 
+import django.core.validators
 import django.db.models
 import django.urls
 
@@ -108,7 +109,15 @@ class Dish(django.db.models.Model):
     )
 
     recipe = django.db.models.TextField(
-        verbose_name='рецепт', help_text='Рецепт по приготовлению'
+        validators=[
+            django.core.validators.MinLengthValidator(
+                300,
+                'Рецепт слишком маленький. '
+                'Пожалуйста, распишите этапы приготовления более подробно.',
+            )
+        ],
+        verbose_name='рецепт',
+        help_text='Рецепт по приготовлению',
     )
 
     complexity = core.models.IntegerRangeField(
