@@ -1,13 +1,14 @@
-import django.forms
 import django.db.models
+import django.forms
 
 import core.forms
 import dishes.models
 
 
 class NewDishForm(
-    core.forms.BootstrapClassAndPlaceholderFormMixin,
-    django.forms.ModelForm
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.forms.ModelForm,
 ):
     class Meta:
         model = dishes.models.Dish
@@ -21,8 +22,9 @@ class NewDishForm(
 
 
 class IngredientForm(
-    core.forms.BootstrapClassAndPlaceholderFormMixin,
-    django.forms.ModelForm
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.forms.ModelForm,
 ):
     class Meta:
         model = dishes.models.IngredientInstance
@@ -37,5 +39,6 @@ IngredientFormSet = django.forms.inlineformset_factory(
     dishes.models.Dish,
     dishes.models.IngredientInstance,
     form=IngredientForm,
-    extra=5
+    extra=1,
+    can_delete=False,
 )

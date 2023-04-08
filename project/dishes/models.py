@@ -40,7 +40,6 @@ class IngredientInstance(django.db.models.Model):
         (MILLILITERS, 'миллилитр'),
         (TABLE_SPOON, 'столовая ложка'),
         (TEA_SPOON, 'чайная ложка'),
-
     ]
     dish = django.db.models.ForeignKey(
         'Dish',
@@ -55,7 +54,7 @@ class IngredientInstance(django.db.models.Model):
     )
 
     quantity = django.db.models.PositiveIntegerField(
-        default=0,
+        default=None,
         verbose_name='объём ингредиента',
         help_text='Укажите объём ингредиента',
     )
@@ -67,18 +66,29 @@ class IngredientInstance(django.db.models.Model):
         help_text='Укажите тип объёма ингредиента. Максимум 100 символов',
     )
 
+    def __str__(self):
+        return self.ingredient.name
+
     class Meta:
         verbose_name = 'объект ингредиента'
         verbose_name_plural = 'объекты ингредиентов'
 
-    def __str__(self):
-        return self.ingredient.name
-
 
 class Dish(django.db.models.Model):
+    SENT = 'sent'
+    HANDLING = 'handling'
+    ADDED = 'added'
+    REJECTED = 'rejected'
+
+    PROCESSING_STATUS_CHOICES = [
+        (SENT, 'Отправлено модератору'),
+        (HANDLING, 'В обработке'),
+        (ADDED, 'Добавлено'),
+        (REJECTED, 'Отклонено'),
+    ]
+
     author = django.db.models.ForeignKey(
         users.models.User,
-        null=True,
         on_delete=django.db.models.CASCADE,
         verbose_name='автор блюда',
     )
@@ -109,9 +119,22 @@ class Dish(django.db.models.Model):
         help_text='Сложность блюда от 1 до 5',
     )
     cooking_time = django.db.models.DurationField(
+        default=datetime.timedelta(minutes=30),
         verbose_name='время готовки',
         help_text='Время готовки',
-        default=datetime.timedelta(minutes=30),
+    )
+
+    moderation_status = django.db.models.CharField(
+        choices=PROCESSING_STATUS_CHOICES,
+        default=SENT,
+        max_length=8,
+        verbose_name='статус обработки',
+    )
+
+    is_on_home_page = django.db.models.BooleanField(
+        default=False,
+        verbose_name='отображать на главной странице',
+        help_text='Поставьте галочку, чтобы отобразить на главной странице',
     )
 
     date_created = django.db.models.DateTimeField(
@@ -133,3 +156,4 @@ class Dish(django.db.models.Model):
     class Meta:
         verbose_name = 'блюдо'
         verbose_name_plural = 'блюда'
+        ordering = ['-date_created']

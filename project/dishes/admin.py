@@ -43,8 +43,15 @@ class DishAdmin(django.contrib.admin.ModelAdmin):
         dishes.models.Dish.complexity.field.name,
         dishes.models.Dish.date_created.field.name,
         dishes.models.Dish.date_updated.field.name,
+        dishes.models.Dish.moderation_status.field.name,
+        dishes.models.Dish.is_on_home_page.field.name,
     )
 
     list_display_links = (dishes.models.Dish.name.field.name,)
 
     inlines = (IngredientInstanceInline,)
+
+    list_editable = (
+        dishes.models.Dish.is_on_home_page.field.name,
+        dishes.models.Dish.moderation_status.field.name,
+    )

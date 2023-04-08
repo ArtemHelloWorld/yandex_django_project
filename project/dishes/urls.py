@@ -9,6 +9,8 @@ urlpatterns = [
         'new', dishes.views.NewDishView.as_view(), name='dish_new'
     ),
     django.urls.path(
-        '<int:dish_pk>', dishes.views.DishDetailView.as_view(), name='dish_detail'
-    )
+        '<int:dish_pk>',
+        dishes.views.DishDetailView.as_view(),
+        name='dish_detail',
+    ),
 ]

@@ -10,14 +10,16 @@ import users.services
 
 
 class PasswordResetForm(
-    core.forms.BootstrapClassAndPlaceholderFormMixin,
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
     django.contrib.auth.forms.PasswordResetForm,
 ):
     pass
 
 
 class SignUpForm(
-    core.forms.BootstrapClassAndPlaceholderFormMixin,
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
     django.contrib.auth.forms.UserCreationForm,
 ):
     def __init__(self, *args, **kwargs):
@@ -55,7 +57,8 @@ class SignUpForm(
 
 
 class CustomAuthenticationForm(
-    core.forms.BootstrapClassAndPlaceholderFormMixin,
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
     django.contrib.auth.forms.AuthenticationForm,
 ):
     username = django.forms.CharField(label='Логин или почта', max_length=254)

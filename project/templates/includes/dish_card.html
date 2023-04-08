@@ -7,7 +7,7 @@
   <div class="card mb-3">
     <div class="card-body">
       <h5 class="card-title">{{ dish.name }}</h5>
-      <p class="card-text">Сложность {{ dish.complexity }}/10</p>
+      <p class="card-text">Сложность {{ dish.complexity }}/5</p>
       <p class="card-text">Время готовки {{ dish.cooking_time }}</p>
       <p class="card-text">Автор {{ dish.author.username }}</p>
       <a href="{{ dish.get_absolute_url }}" class="btn btn-primary">{% trans "Готовить!" %}</a>

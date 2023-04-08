@@ -43,35 +43,6 @@ class NewDishView(
         return django.shortcuts.redirect('home:home')
 
 
-class ProfileView(
-    django.contrib.auth.mixins.LoginRequiredMixin,
-    django.views.generic.TemplateView,
-):
-    template_name = "users/profile/profile.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        user = self.request.user
-        user_form = users.forms.UserForm(instance=user)
-        profile_form = users.forms.UserProfileForm(instance=user.profile)
-
-        context["user_form"] = user_form
-        context["profile_form"] = profile_form
-        return context
-
-    def post(self, request):
-        user = request.user
-        user_form = users.forms.UserForm(request.POST, instance=user)
-        profile_form = users.forms.UserProfileForm(
-            request.POST, request.FILES, instance=user.profile
-        )
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-        return django.shortcuts.redirect("users:profile")
-
-
 class DishDetailView(django.views.generic.DetailView):
     queryset = dishes.models.Dish.objects.prefetch_related('ingredients').all()
     pk_url_kwarg = 'dish_pk'
