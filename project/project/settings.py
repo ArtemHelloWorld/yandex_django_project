@@ -166,3 +166,25 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 TAGGIT_CASE_INSENSITIVE = True
+
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "modern",
+    "width": "auto",
+    "plugins": [
+        "advlist autolink lists charmap print preview hr anchor",
+        "searchreplace wordcount nonbreaking save fullscreen",
+        "emoticons template paste textcolor colorpicker textpattern",
+    ],
+    "toolbar1": (
+        "undo redo | "
+        "bold italic underline strikethrough | "
+        "alignleft aligncenter alignright alignjustify | "
+        "bullist numlist outdent indent | "
+        "forecolor backcolor"
+    ),
+    "toolbar2": (
+        "styleselect formatselect fontselect fontsizeselect | "
+        "emoticons | "
+        "preview"
+    ),
+}

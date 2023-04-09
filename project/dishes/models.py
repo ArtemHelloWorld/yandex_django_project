@@ -4,6 +4,8 @@ import django.core.validators
 import django.db.models
 import django.urls
 import taggit.managers
+import tinymce
+
 
 import core.models
 import users.models
@@ -111,7 +113,7 @@ class Dish(django.db.models.Model):
 
     tags = taggit.managers.TaggableManager()
 
-    recipe = django.db.models.TextField(
+    recipe = tinymce.HTMLField(
         validators=[
             django.core.validators.MinLengthValidator(
                 300,
