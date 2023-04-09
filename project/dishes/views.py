@@ -33,6 +33,7 @@ class NewDishView(
 
             dish.author = self.request.user
             dish.save()
+            new_dish_form.save_m2m()
 
             ingredients = ingredient_formset.save(commit=False)
 
@@ -48,11 +49,15 @@ class NewDishView(
                 {
                     'new_dish_form': new_dish_form,
                     'ingredient_formset': ingredient_formset,
-                }
+                },
             )
 
 
 class DishDetailView(django.views.generic.DetailView):
-    queryset = dishes.models.Dish.objects.prefetch_related('ingredients').all()
+    queryset = (
+        dishes.models.Dish.objects.prefetch_related('ingredients')
+        .prefetch_related('tags')
+        .all()
+    )
     pk_url_kwarg = 'dish_pk'
     template_name = 'dishes/dish_detail.html'

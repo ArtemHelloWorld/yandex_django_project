@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('dishes', '0006_auto_20230408_2339'),
     ]
@@ -14,11 +13,24 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='dish',
             name='recipe',
-            field=models.TextField(help_text='Рецепт по приготовлению', validators=[django.core.validators.MinLengthValidator(300, 'Рецепт слишком маленький. Пожалуйста, распишите этапы приготовления более подробно.')], verbose_name='рецепт'),
+            field=models.TextField(
+                help_text='Рецепт по приготовлению',
+                validators=[
+                    django.core.validators.MinLengthValidator(
+                        300,
+                        'Рецепт слишком маленький. Пожалуйста, распишите этапы приготовления более подробно.',
+                    )
+                ],
+                verbose_name='рецепт',
+            ),
         ),
         migrations.AlterField(
             model_name='ingredientinstance',
             name='quantity',
-            field=models.PositiveIntegerField(default=None, help_text='Укажите объём ингредиента', verbose_name='объём ингредиента'),
+            field=models.PositiveIntegerField(
+                default=None,
+                help_text='Укажите объём ингредиента',
+                verbose_name='объём ингредиента',
+            ),
         ),
     ]

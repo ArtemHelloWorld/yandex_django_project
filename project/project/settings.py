@@ -35,8 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tz_detect',
     'sorl.thumbnail',
+    'tz_detect',
+    'taggit',
     'tinymce',
 ]
 
@@ -163,3 +164,5 @@ MAX_FAILED_LOGIN_ATTEMPTS = int(os.getenv('MAX_FAILED_LOGIN_ATTEMPTS', 3))
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+TAGGIT_CASE_INSENSITIVE = True

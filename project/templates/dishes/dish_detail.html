@@ -14,7 +14,14 @@
       <h1 class="mb-4"> {{ dish.name }}</h1>
 
       <p>Тип: {{ dish.type.name }} | Время готовки: {{ dish.cooking_time }} | Сложность: {{ dish.complexity }}/5 </p>
-
+      <div>
+        <strong>Тэги:</strong>
+        <p>
+          {% for tag in dish.tags.all %}
+            <a class="p-1 bg-info">{{ tag }}</a>
+          {% endfor %}
+        </p>
+      </div>
       <div class="mb-4">
         <strong>Ингредиенты: </strong>
         {% for ingredient in dish.ingredients.all %}

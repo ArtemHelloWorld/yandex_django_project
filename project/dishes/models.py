@@ -3,6 +3,7 @@ import datetime
 import django.core.validators
 import django.db.models
 import django.urls
+import taggit.managers
 
 import core.models
 import users.models
@@ -108,6 +109,8 @@ class Dish(django.db.models.Model):
         help_text='Укажите тип блюда',
     )
 
+    tags = taggit.managers.TaggableManager()
+
     recipe = django.db.models.TextField(
         validators=[
             django.core.validators.MinLengthValidator(
@@ -137,7 +140,7 @@ class Dish(django.db.models.Model):
         choices=PROCESSING_STATUS_CHOICES,
         default=SENT,
         max_length=8,
-        verbose_name='статус обработки',
+        verbose_name='статус модерации',
     )
 
     is_on_home_page = django.db.models.BooleanField(

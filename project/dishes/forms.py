@@ -15,6 +15,7 @@ class NewDishForm(
         fields = (
             dishes.models.Dish.name.field.name,
             dishes.models.Dish.type.field.name,
+            'tags',
             dishes.models.Dish.recipe.field.name,
             dishes.models.Dish.complexity.field.name,
             dishes.models.Dish.cooking_time.field.name,
