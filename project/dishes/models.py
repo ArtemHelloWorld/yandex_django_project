@@ -3,11 +3,13 @@ import datetime
 import django.core.validators
 import django.db.models
 import django.urls
+import django_cleanup.signals
+import sorl.thumbnail
 import taggit.managers
 import tinymce
 
-
 import core.models
+import dishes.managers
 import users.models
 
 
@@ -79,6 +81,8 @@ class IngredientInstance(django.db.models.Model):
 
 
 class Dish(django.db.models.Model):
+    objects = dishes.managers.DishManager()
+
     SENT = 'sent'
     HANDLING = 'handling'
     ADDED = 'added'
@@ -101,6 +105,12 @@ class Dish(django.db.models.Model):
         max_length=100,
         verbose_name='название',
         help_text='Укажите название блюда. Максимум 100 символов',
+    )
+
+    image = django.db.models.OneToOneField(
+        'DishImageMain',
+        verbose_name='главное фото',
+        on_delete=django.db.models.CASCADE,
     )
 
     type = django.db.models.ForeignKey(
@@ -171,3 +181,18 @@ class Dish(django.db.models.Model):
         verbose_name = 'блюдо'
         verbose_name_plural = 'блюда'
         ordering = ['-date_created']
+
+
+class DishImageMain(django.db.models.Model):
+    image_main = django.db.models.ImageField(upload_to='dish/main/%Y/%m/%d')
+
+    class Meta:
+        verbose_name = 'главное фото'
+        verbose_name_plural = 'главные фото'
+
+
+def sorl_delete(**kwargs):
+    sorl.thumbnail.delete(kwargs['file'])
+
+
+django_cleanup.signals.cleanup_pre_delete.connect(sorl_delete)

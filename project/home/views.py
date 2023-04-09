@@ -9,7 +9,4 @@ class HomeView(django.views.generic.ListView):
     context_object_name = 'dishes'
 
     def get_queryset(self):
-        return dishes.models.Dish.objects.filter(
-            django.db.models.Q(is_on_home_page=True)
-            & django.db.models.Q(moderation_status=dishes.models.Dish.ADDED)
-        )
+        return dishes.models.Dish.objects.active()

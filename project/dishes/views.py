@@ -54,10 +54,6 @@ class NewDishView(
 
 
 class DishDetailView(django.views.generic.DetailView):
-    queryset = (
-        dishes.models.Dish.objects.prefetch_related('ingredients')
-        .prefetch_related('tags')
-        .all()
-    )
+    model = dishes.models.Dish
     pk_url_kwarg = 'dish_pk'
     template_name = 'dishes/dish_detail.html'

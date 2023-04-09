@@ -12,7 +12,9 @@
 
     <div class="col-md-6">
       <h1 class="mb-4"> {{ dish.name }}</h1>
-
+      {% thumbnail dish.image.image_main "500" padding=True as image %}
+        <img src="{{ image.url }}" class="img-fluid">
+      {% endthumbnail %}
       <p>Тип: {{ dish.type.name }} | Время готовки: {{ dish.cooking_time }} | Сложность: {{ dish.complexity }}/5 </p>
       <div>
         <strong>Тэги:</strong>
