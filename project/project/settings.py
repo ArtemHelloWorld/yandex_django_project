@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'tz_detect',
     'taggit',
+    'taggit_selectize',
     'tinymce',
 ]
 
@@ -166,6 +167,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 TAGGIT_CASE_INSENSITIVE = True
+TAGGIT_TAGS_FROM_STRING = 'taggit_selectize.utils.parse_tags'
+TAGGIT_STRING_FROM_TAGS = 'taggit_selectize.utils.join_tags'
 
 TINYMCE_DEFAULT_CONFIG = {
     'theme': 'modern',

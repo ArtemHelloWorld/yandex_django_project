@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('dishes', '0011_alter_dish_image'),
     ]
@@ -17,7 +16,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='dish',
             name='image_main',
-            field=models.ImageField(null=True, upload_to='dish/main/%Y/%m/%d', verbose_name='главное фото'),
+            field=models.ImageField(
+                null=True,
+                upload_to='dish/main/%Y/%m/%d',
+                verbose_name='главное фото',
+            ),
         ),
         migrations.DeleteModel(
             name='DishImageMain',

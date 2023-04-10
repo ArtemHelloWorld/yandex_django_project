@@ -5,7 +5,7 @@ import django.db.models
 import django.urls
 import django_cleanup.signals
 import sorl.thumbnail
-import taggit.managers
+import taggit_selectize.managers
 import tinymce
 
 import core.models
@@ -121,7 +121,10 @@ class Dish(django.db.models.Model):
         help_text='Укажите тип блюда',
     )
 
-    tags = taggit.managers.TaggableManager()
+    tags = taggit_selectize.managers.TaggableManager(
+        verbose_name='теги',
+        help_text='добавьте теги(используйте клавишу enter для ввода)',
+    )
 
     recipe = tinymce.HTMLField(
         validators=[

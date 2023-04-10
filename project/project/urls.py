@@ -8,6 +8,7 @@ urlpatterns = [
     django.urls.path('dishes/', django.urls.include('dishes.urls')),
     django.urls.path('users/', django.urls.include('users.urls')),
     django.urls.path('users/', django.urls.include(django.contrib.auth.urls)),
+    django.urls.path('taggit/', django.urls.include('taggit_selectize.urls')),
     django.urls.path('tinymce/', django.urls.include('tinymce.urls')),
     django.urls.path('tz_detect/', django.urls.include('tz_detect.urls')),
     django.urls.path('admin/', django.contrib.admin.site.urls),

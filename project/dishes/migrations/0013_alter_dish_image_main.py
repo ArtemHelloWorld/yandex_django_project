@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('dishes', '0012_auto_20230410_1047'),
     ]
@@ -13,6 +12,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='dish',
             name='image_main',
-            field=models.ImageField(upload_to='dish/main/%Y/%m/%d', verbose_name='главное фото'),
+            field=models.ImageField(
+                upload_to='dish/main/%Y/%m/%d', verbose_name='главное фото'
+            ),
         ),
     ]
