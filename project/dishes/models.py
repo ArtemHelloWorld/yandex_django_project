@@ -107,10 +107,10 @@ class Dish(django.db.models.Model):
         help_text='Укажите название блюда. Максимум 100 символов',
     )
 
-    image = django.db.models.OneToOneField(
-        'DishImageMain',
+    image_main = django.db.models.ImageField(
+        upload_to='dish/main/%Y/%m/%d',
         verbose_name='главное фото',
-        on_delete=django.db.models.CASCADE,
+        help_text='Добавьте красивую фотографию блюда',
     )
 
     type = django.db.models.ForeignKey(
@@ -181,14 +181,6 @@ class Dish(django.db.models.Model):
         verbose_name = 'блюдо'
         verbose_name_plural = 'блюда'
         ordering = ['-date_created']
-
-
-class DishImageMain(django.db.models.Model):
-    image_main = django.db.models.ImageField(upload_to='dish/main/%Y/%m/%d')
-
-    class Meta:
-        verbose_name = 'главное фото'
-        verbose_name_plural = 'главные фото'
 
 
 def sorl_delete(**kwargs):

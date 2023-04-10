@@ -6,7 +6,7 @@
 <div class="col-sm-4">
   <div class="card mb-3">
     <div class="card-body">
-      {% thumbnail dish.image.image_main "500x500" padding=True as image %}
+      {% thumbnail dish.image_main "500x500" padding=True as image %}
         <img src="{{ image.url }}" class="img-fluid">
       {% endthumbnail %}
       <h5 class="card-title">{{ dish.name }}</h5>

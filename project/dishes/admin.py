@@ -55,6 +55,3 @@ class DishAdmin(django.contrib.admin.ModelAdmin):
         dishes.models.Dish.is_on_home_page.field.name,
         dishes.models.Dish.moderation_status.field.name,
     )
-
-
-django.contrib.admin.site.register(dishes.models.DishImageMain)

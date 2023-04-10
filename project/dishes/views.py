@@ -25,7 +25,7 @@ class NewDishView(
         return context
 
     def post(self, request):
-        new_dish_form = dishes.forms.NewDishForm(request.POST)
+        new_dish_form = dishes.forms.NewDishForm(request.POST, request.FILES)
         ingredient_formset = dishes.forms.IngredientFormSet(request.POST)
 
         if new_dish_form.is_valid() and ingredient_formset.is_valid():

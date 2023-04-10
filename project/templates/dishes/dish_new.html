@@ -17,7 +17,7 @@
       {{ error|escape }}
     {% endfor %}
 
-    <form action="" method="POST">
+    <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
 
       {% for field in new_dish_form %}
