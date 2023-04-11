@@ -3,6 +3,17 @@ import pathlib
 
 import dotenv
 
+from django.contrib.messages import constants as messages
+
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
@@ -14,6 +25,9 @@ SECRET_KEY = os.getenv(
     'SECRET_KEY', 'django-insecure-w30sdst!plymksa^il!i5%i^^kdfi9kito'
 )
 
+EMAIL_TO_SEND_MESSAGES = os.getenv(
+    'EMAIL_TO_SEND_MESSAGES', 'mail@yandex.ru'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1')
@@ -29,6 +43,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'dishes.apps.DishesConfig',
+    'feedback.apps.FeedbackConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
