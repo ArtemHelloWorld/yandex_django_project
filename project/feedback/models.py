@@ -7,7 +7,6 @@ class Feedback(django.db.models.Model):
     )
     mail = django.db.models.EmailField(
         'электронная почта',
-        default='example@mail.ru'
     )
 
     class Meta:

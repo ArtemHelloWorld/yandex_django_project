@@ -18,17 +18,10 @@ class FeedbackFormTests(TestCase):
 
     def test_labels(self):
         text_label = FeedbackFormTests.form.fields["text"].label
-        self.assertEqual(text_label, "Сообщение")
+        self.assertEqual(text_label, "Введите Ваше сообщение")
 
         mail_label = self.form.fields["mail"].label
-        self.assertEqual(mail_label, "Ваша электронная почта")
-
-    def test_help_texts(self):
-        text_help_text = FeedbackFormTests.form.fields["text"].help_text
-        self.assertEqual(text_help_text, "Введите своё обращение")
-
-        mail_help_text = FeedbackFormTests.form.fields["mail"].help_text
-        self.assertEqual(mail_help_text, "Введите свою электронную почту")
+        self.assertEqual(mail_label, "Введите Вашу почту")
 
     def test_create_feedback(self):
         feedback_item_count = models.Feedback.objects.count()

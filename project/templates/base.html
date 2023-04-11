@@ -26,15 +26,6 @@
 {% include "includes/header.html" %}
 
 <main class="main">
-  {% if messages %}
-    {% for message in messages %}
-      {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-dismissible shadow fade show" role="alert">
-          {{ message | safe }}
-        </div>
-      {% endfor %}
-    {% endfor %}
-  {% endif %}
   <div class="container content">
   {% block content %}{% endblock %}
   </div>

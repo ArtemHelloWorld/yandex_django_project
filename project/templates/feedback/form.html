@@ -1,0 +1,20 @@
+{% load static %}
+
+{% for error in form.non_field_errors %}
+  {{ error|escape }}
+{% endfor %}
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  {% for field in form %}
+    <div class="form-outline form-white mb-4">
+      {% for error in field.errors %}
+        <div class="text-danger">{{ error|escape|linebreaks }}</div>
+      {% endfor %}
+      {{ field }} {{ field.label }}
+    </div>
+  {% endfor %}
+  <button class="btn btn-outline-light btn-lg px-5 mb-5" type="submit">{{ btn_text }}</button>
+
+</form>
