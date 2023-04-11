@@ -16,12 +16,12 @@ class FeedbackFormTests(TestCase):
         )
         self.assertIn("form", response.context)
 
-    def test_labels(self):
-        text_label = FeedbackFormTests.form.fields["text"].label
-        self.assertEqual(text_label, "Введите Ваше сообщение")
+    def test_help_texts(self):
+        text_help_text = FeedbackFormTests.form.fields["text"].help_text
+        self.assertEqual(text_help_text, "Введите Ваше сообщение")
 
-        mail_label = self.form.fields["mail"].label
-        self.assertEqual(mail_label, "Введите Вашу почту")
+        mail_help_text = self.form.fields["mail"].help_text
+        self.assertEqual(mail_help_text, "Введите Вашу почту")
 
     def test_create_feedback(self):
         feedback_item_count = models.Feedback.objects.count()

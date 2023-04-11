@@ -9,7 +9,7 @@ class FeedbackForm(core.forms.BootstrapForm):
             feedback.models.Feedback.text.field.name,
             feedback.models.Feedback.mail.field.name,
         )
-        labels = {
+        help_texts = {
             feedback.models.Feedback.text.field.name: "Введите Ваше сообщение",
             feedback.models.Feedback.mail.field.name: "Введите Вашу почту",
         }
