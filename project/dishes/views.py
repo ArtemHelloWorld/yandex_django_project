@@ -75,15 +75,17 @@ class DishSearchView(django.views.generic.TemplateView):
         if dishes_search_formset.is_valid():
             ingredients = dishes_search_formset.cleaned_data
             ingredients_list = [
-                ingredient.get('ingredient').name for ingredient in ingredients if ingredient.get('ingredient')
+                ingredient.get('ingredient').name
+                for ingredient in ingredients
+                if ingredient.get('ingredient')
             ]
             return django.shortcuts.render(
                 request,
                 self.template_name,
                 {
-                    'dishes_search_formset': dishes.forms.DishesSearchFormSet(),
-                    'ingredients_list': ingredients_list},
+                    'dishes_search_formset': (
+                        dishes.forms.DishesSearchFormSet()
+                    ),
+                    'ingredients_list': ingredients_list,
+                },
             )
-
-
-
