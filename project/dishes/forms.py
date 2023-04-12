@@ -44,3 +44,20 @@ IngredientFormSet = django.forms.inlineformset_factory(
     extra=1,
     can_delete=False,
 )
+
+
+class DishesSearchForm(
+    core.forms.BootstrapSelectClassFormMixin,
+    django.forms.Form,
+):
+    ingredient = django.forms.ModelChoiceField(
+        queryset=dishes.models.Ingredient.objects.all(),
+        empty_label='выберите ингредиент'
+    )
+
+
+DishesSearchFormSet = django.forms.formset_factory(
+    form=DishesSearchForm,
+    extra=1,
+    can_delete=False,
+)

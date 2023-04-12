@@ -3,42 +3,26 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{% trans "Новое блюдо" %}{% endblock %}
+{% block title %}{% trans "Поиск блюда" %}{% endblock %}
 
 
 {% block content %}
 <head> {{ new_dish_form.media }} </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="/static/taggit_selectize/js/selectize.js"></script>
-
-
 
 
 <div class="container pt-4">
   <div class="row">
-    {% for error in form.non_field_errors %}
-      {{ error|escape }}
-    {% endfor %}
 
     <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
 
-      {% for field in new_dish_form %}
-        <div class="form-outline form-white mb-4">
-          {% for error in field.errors %}
-            <div class="text-danger">{{ error|escape|linebreaks }}</div>
-          {% endfor %}
-          {{ field.help_text }}
-          {{ field }}
-        </div>
-      {% endfor %}
-
       <div class="form-outline form-white mb-4">
-        Добавьте список ингредиентов
+        <h1>{% trans "Выберите что есть у вас в холодильнике" %}</h1>
 
-        {{ ingredient_formset.management_form }}
+        {{ dishes_search_formset.management_form }}
         <div class="table row">
-          {% for form in ingredient_formset.forms %}
+          {% for form in dishes_search_formset.forms %}
                 {% for field in form %}
                   <div class='col-md-4'>
                     {{ field }}
@@ -50,20 +34,31 @@
         <input type="button" value="Добавить ингредиент" id="add_more" class="btn btn-outline-dark me-2">
       </div>
 
-      <button class="btn btn-primary px-5 mb-5" type="submit">{% trans "Отправить" %}</button>
+      <button class="btn btn-primary px-5 mb-5" type="submit">{% trans "Найти блюдо" %}</button>
+
+      <h1>Вы выбрали</h1>
+      {% if ingredients_list %}
+        {% for ingredient in ingredients_list %}
+          <p>{{ ingredient }}</p>
+        {% endfor %}
+      {% endif %}
 
     </form>
   </div>
 </div>
 <script>
-  $('#add_more').click(function() {
+    $('#add_more').click(function() {
               cloneMore('div.table:last', 'ingredients');
           });
+
     function cloneMore(selector, type) {
     var newElement = $(selector).clone(true);
-    var total = $('#id_' + type + '-TOTAL_FORMS').val();
+    var total = $('#id_form' + '-TOTAL_FORMS').val();
+    console.log(total);
     newElement.find(':input').each(function() {
+
         var name = $(this).attr('name').replace('-' + (total-1) + '-','-' + total + '-');
+        console.log(name);
         var id = 'id_' + name;
         $(this).attr({'name': name, 'id': id}).val('').removeAttr('checked');
     });
@@ -72,7 +67,7 @@
         $(this).attr('for', newFor);
     });
     total++;
-    $('#id_' + type + '-TOTAL_FORMS').val(total);
+    $('#id_form' + '-TOTAL_FORMS').val(total);
     $(selector).after(newElement);
 }
 </script>

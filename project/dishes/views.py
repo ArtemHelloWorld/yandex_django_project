@@ -11,7 +11,6 @@ class NewDishView(
     django.views.generic.TemplateView,
 ):
     template_name = 'dishes/dish_new.html'
-    form_class = dishes.forms.NewDishForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,3 +56,34 @@ class DishDetailView(django.views.generic.DetailView):
     model = dishes.models.Dish
     pk_url_kwarg = 'dish_pk'
     template_name = 'dishes/dish_detail.html'
+
+
+class DishSearchView(django.views.generic.TemplateView):
+    template_name = 'dishes/dishes_search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        dishes_search_formset = dishes.forms.DishesSearchFormSet()
+
+        context['dishes_search_formset'] = dishes_search_formset
+
+        return context
+
+    def post(self, request):
+        dishes_search_formset = dishes.forms.DishesSearchFormSet(request.POST)
+        if dishes_search_formset.is_valid():
+            ingredients = dishes_search_formset.cleaned_data
+            ingredients_list = [
+                ingredient.get('ingredient').name for ingredient in ingredients if ingredient.get('ingredient')
+            ]
+            return django.shortcuts.render(
+                request,
+                self.template_name,
+                {
+                    'dishes_search_formset': dishes.forms.DishesSearchFormSet(),
+                    'ingredients_list': ingredients_list},
+            )
+
+
+
