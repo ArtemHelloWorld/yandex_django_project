@@ -36,10 +36,16 @@
 
       <button class="btn btn-primary px-5 mb-5" type="submit">{% trans "Найти блюдо" %}</button>
 
-      <h1>Вы выбрали</h1>
-      {% if ingredients_list %}
-        {% for ingredient in ingredients_list %}
-          <p>{{ ingredient }}</p>
+
+      {% if dishes_dict %}
+        <h1>Вы можете приготовить</h1>
+        {% for dish, ingredients in dishes_dict.items %}
+          {% include "includes/dish_card.html"  with dish=dish %}
+            {% if ingredients|length %}
+              Вам нужно докупить: {% for ingredient in ingredients %} {{ ingredient }} {% endfor %}
+            {% else %}
+              У вас есть все продукты. Начинаем готовить!
+            {% endif %}</p>
         {% endfor %}
       {% endif %}
 
