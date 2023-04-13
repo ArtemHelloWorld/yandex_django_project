@@ -17,7 +17,7 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'dishes:dish_new' %}" class="nav-link px-2 {% if view_name == 'dishes:dish_new' %} text-secondary {% else %} text-white {% endif %}">{% trans "Добавить блюдо" %}</a></li>
         {% endif %}
-        {% comment %} <li><a href="{% url 'feedback:feedback' %}" class="nav-link px-2 {% if view_name == 'feedback:feedback' %} text-secondary {% else %} text-white {% endif %}">{% trans "Оставить фидбек" %}</a></li> {% endcomment %}
+        <li><a href="{% url 'feedback:feedback' %}" class="nav-link px-2 {% if view_name == 'feedback:feedback' %} text-secondary {% else %} text-white {% endif %}">{% trans "Оставить фидбек" %}</a></li>
       </ul>
       {% endwith %}
 

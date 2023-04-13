@@ -14,8 +14,9 @@ class FeedbackView(django.views.generic.FormView):
         django.core.mail.send_mail(
             'Спасибо за заполнение формы!',
             ('Благодарим Вас за отзыв о работе нашего сервиса. '
-             f'Содержимое вашего письма - "{form.cleaned_data["text"]}"'),
-            django.conf.settings.EMAIL_TO_SEND_MESSAGES,
+             f'Содержимое вашего письма - "{form.cleaned_data["text"]}"\n'
+             'Скоро мы с Вами свяжемся!'),
+            django.conf.settings.EMAIL_HOST_USER,
             [form.cleaned_data['mail']],
             fail_silently=False,
         )

@@ -4,14 +4,6 @@ import pathlib
 import django.contrib.messages.constants
 import dotenv
 
-MESSAGE_TAGS = {
-        django.contrib.messages.constants.DEBUG: 'alert-secondary',
-        django.contrib.messages.constants.INFO: 'alert-info',
-        django.contrib.messages.constants.SUCCESS: 'alert-success',
-        django.contrib.messages.constants.WARNING: 'alert-warning',
-        django.contrib.messages.constants.ERROR: 'alert-danger',
- }
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
@@ -23,9 +15,9 @@ SECRET_KEY = os.getenv(
     'SECRET_KEY', 'django-insecure-w30sdst!plymksa^il!i5%i^^kdfi9kito'
 )
 
-EMAIL_TO_SEND_MESSAGES = os.getenv(
-    'EMAIL_TO_SEND_MESSAGES', 'mail@yandex.ru'
-)
+# EMAIL_TO_SEND_MESSAGES = os.getenv(
+#     'EMAIL_TO_SEND_MESSAGES', 'mail@yandex.ru'
+# )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1')
@@ -161,9 +153,15 @@ if DEBUG:
     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
     INSTALLED_APPS += ('debug_toolbar',)
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / 'send_mail'
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_TO_SEND_MESSAGES')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL') == 'True'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 AUTHENTICATION_BACKENDS = [
     'users.backends.AuthByEmailOrUsernameBackend',
@@ -204,3 +202,12 @@ TINYMCE_DEFAULT_CONFIG = {
         'preview'
     ),
 }
+
+MESSAGE_TAGS = {
+        django.contrib.messages.constants.DEBUG: 'alert-secondary',
+        django.contrib.messages.constants.INFO: 'alert-info',
+        django.contrib.messages.constants.SUCCESS: 'alert-success',
+        django.contrib.messages.constants.WARNING: 'alert-warning',
+        django.contrib.messages.constants.ERROR: 'alert-danger',
+ }
+
