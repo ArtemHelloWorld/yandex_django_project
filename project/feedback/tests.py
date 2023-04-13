@@ -35,6 +35,9 @@ class FeedbackFormTests(django.test.TestCase):
             data=form_data
         )
 
-        self.assertRedirects(response, django.urls.reverse('feedback:feedback'))
+        self.assertRedirects(
+            response,
+            django.urls.reverse('feedback:feedback')
+        )
         self.assertEqual(feedback.models.Feedback.objects.count(),
                          feedback_item_count + 1)
