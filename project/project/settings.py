@@ -1,17 +1,15 @@
 import os
 import pathlib
 
+import django.contrib.messages.constants
 import dotenv
 
-from django.contrib.messages import constants as messages
-
-
 MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-secondary',
-        messages.INFO: 'alert-info',
-        messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
-        messages.ERROR: 'alert-danger',
+        django.contrib.messages.constants.DEBUG: 'alert-secondary',
+        django.contrib.messages.constants.INFO: 'alert-info',
+        django.contrib.messages.constants.SUCCESS: 'alert-success',
+        django.contrib.messages.constants.WARNING: 'alert-warning',
+        django.contrib.messages.constants.ERROR: 'alert-danger',
  }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

@@ -1,15 +1,17 @@
+import django.forms
 import core.forms
-import feedback.models
 
 
-class FeedbackForm(core.forms.BootstrapForm):
-    class Meta:
-        model = feedback.models.Feedback
-        fields = (
-            feedback.models.Feedback.text.field.name,
-            feedback.models.Feedback.mail.field.name,
-        )
-        help_texts = {
-            feedback.models.Feedback.text.field.name: "Введите Ваше сообщение",
-            feedback.models.Feedback.mail.field.name: "Введите Вашу почту",
-        }
+class FeedbackForm(
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.forms.Form,
+):
+    text = django.forms.CharField(
+        label='Ваше сообщение',
+        widget=django.forms.Textarea,
+        max_length=1000,
+    )
+    mail = django.forms.EmailField(
+        label='Ваша почта',
+    )
