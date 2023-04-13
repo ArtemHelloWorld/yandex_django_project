@@ -75,11 +75,16 @@ class DishSearchView(django.views.generic.TemplateView):
         if dishes_search_formset.is_valid():
             ingredients = dishes_search_formset.cleaned_data
             ingredients_list = [
-                ingredient.get('ingredient')
-                for ingredient in ingredients
+                ingredient.get('ingredient') for ingredient in ingredients
             ]
 
-            ingredient_instance = dishes.models.IngredientInstance.objects.filter(ingredient__in=ingredients_list).select_related('dish').all()
+            ingredient_instance = (
+                dishes.models.IngredientInstance.objects.filter(
+                    ingredient__in=ingredients_list
+                )
+                .select_related('dish')
+                .all()
+            )
 
             dishes_dict = {}
             for i in ingredient_instance:
@@ -88,11 +93,17 @@ class DishSearchView(django.views.generic.TemplateView):
                 else:
                     dishes_dict[i.dish] = [i]
 
-            dishes_dict = dict(sorted(dishes_dict.items(), key=lambda x: len(x[1])))
+            dishes_dict = dict(
+                sorted(dishes_dict.items(), key=lambda x: len(x[1]))
+            )
 
             dishes_to_buy = {}
             for dish, ingredients in dishes_dict.items():
-                dishes_to_buy[dish] = [item for item in dish.ingredients.all() if item not in ingredients]
+                dishes_to_buy[dish] = [
+                    item
+                    for item in dish.ingredients.all()
+                    if item not in ingredients
+                ]
 
             return django.shortcuts.render(
                 request,

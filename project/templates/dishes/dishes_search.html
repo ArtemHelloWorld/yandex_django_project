@@ -40,7 +40,7 @@
       {% if dishes_dict %}
         <h1>Вы можете приготовить</h1>
         {% for dish, ingredients in dishes_dict.items %}
-          {% include "includes/dish_card.html"  with dish=dish %}
+          <p>{% include "includes/dish_card.html"  with dish=dish %}
             {% if ingredients|length %}
               Вам нужно докупить: {% for ingredient in ingredients %} {{ ingredient }} {% endfor %}
             {% else %}
