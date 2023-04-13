@@ -8,15 +8,17 @@ class DurationWidget(MultiWidget):
                 attrs={
                     'class': 'form-control col-4',
                     'min': 0,
-                    'placeholder': 'Часы'
-                }),
+                    'placeholder': 'Часы',
+                }
+            ),
             NumberInput(
                 attrs={
                     'class': 'form-control col-4',
                     'min': 0,
                     'max': 59,
-                    'placeholder': 'Минуты'
-                }),
+                    'placeholder': 'Минуты',
+                }
+            ),
         ]
         super().__init__(widgets, attrs=attrs)
 

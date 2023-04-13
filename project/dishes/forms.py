@@ -1,8 +1,8 @@
 import django.forms
 
 import core.forms
-import dishes.widgets
 import dishes.models
+import dishes.widgets
 
 
 class NewDishForm(
@@ -21,9 +21,7 @@ class NewDishForm(
             dishes.models.Dish.complexity.field.name,
             dishes.models.Dish.cooking_time.field.name,
         )
-        widgets = {
-            'cooking_time': dishes.widgets.DurationWidget()
-        }
+        widgets = {'cooking_time': dishes.widgets.DurationWidget()}
 
 
 class IngredientForm(
