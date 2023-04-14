@@ -209,5 +209,4 @@ MESSAGE_TAGS = {
         django.contrib.messages.constants.SUCCESS: 'alert-success',
         django.contrib.messages.constants.WARNING: 'alert-warning',
         django.contrib.messages.constants.ERROR: 'alert-danger',
- }
-
+}
