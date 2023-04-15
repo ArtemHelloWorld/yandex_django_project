@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Главная" %}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container pt-4">
+  <div class="row">
+    {% for dish in dishes %}
+      {% include "includes/dish_card.html"  with dish=dish %}
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

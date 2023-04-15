@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load thumbnail %}
+{% load tz_detect %}
+{% tz_detect %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/bs/bootstrap.css' %}" />
+  <script src="{% static 'js/bs/bootstrap.bundle.min.js' %}"></script>
+
+<!--  <link rel="apple-touch-icon" sizes="180x180" href="{% get_media_prefix %}favicon/apple-touch-icon.png">-->
+<!--  <link rel="icon" type="image/png" sizes="32x32" href="{% get_media_prefix %}favicon/favicon-32x32.png">-->
+<!--  <link rel="icon" type="image/png" sizes="16x16" href="{% get_media_prefix %}avicon/favicon-16x16.png">-->
+<!--  <link rel="manifest" href="{% get_media_prefix %}favicon/site.webmanifest">-->
+<!--  <link rel="mask-icon" href="{% get_media_prefix %}favicon/safari-pinned-tab.svg" color="#5bbad5">-->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+
+
+<main class="main gradient-custom">
+  <div class="container content ">
+    <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+                {% block content %}{% endblock %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+</body>
+
+</html>

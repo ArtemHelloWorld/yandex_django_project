@@ -1,0 +1,41 @@
+{% load static %}
+{% load i18n %}
+
+<header class="p-3 text-bg-dark">
+
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="{% url 'home:home' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <img src="{% get_media_prefix %}/logo/logo.svg" class="header-logo">
+      </a>
+
+      {% with request.resolver_match.view_name as view_name %}
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="{% url 'home:home' %}" class="nav-link px-2 {% if view_name == 'home:home' %} text-secondary {% else %} text-white {% endif %}">{% trans "На главную" %}</a></li>
+        <li><a href="{% url 'dishes:dishes_search' %}" class="nav-link px-2 {% if view_name == 'dishes:dishes_search' %} text-secondary {% else %} text-white {% endif %}">{% trans "Найти блюдо" %}</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'dishes:dish_new' %}" class="nav-link px-2 {% if view_name == 'dishes:dish_new' %} text-secondary {% else %} text-white {% endif %}">{% trans "Добавить блюдо" %}</a></li>
+        {% endif %}
+        <li><a href="{% url 'feedback:feedback' %}" class="nav-link px-2 {% if view_name == 'feedback:feedback' %} text-secondary {% else %} text-white {% endif %}">{% trans "Оставить фидбек" %}</a></li>
+      </ul>
+      {% endwith %}
+
+      <div class="text-end">
+        {% if user.is_authenticated %}
+          {% if user.is_staff %}
+            <a href="{% url 'admin:index' %}" type="button" class="btn btn-outline-light me-2">{% trans "Панель администратора" %}</a>
+            <a href="" type="button" class="btn btn-outline-light me-2">{% trans "Пользователи" %}</a>
+          {% endif %}
+            <a href="{% url 'users:logout' %}" type="button" class="btn btn-outline-light me-2">{% trans "Выйти" %}</a>
+            <a href="" type="button" class="btn btn-outline-light me-2">{% trans "Мой профиль" %}</a>
+        {% else %}
+          <a href="{% url 'users:login' %}" type="button" class="btn btn-outline-light me-2">{% trans "Войти" %}</a>
+          <a href="{% url 'users:signup' %}" type="button" class="btn btn-outline-light me-2">{% trans "Зарегистрироваться" %}</a>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+

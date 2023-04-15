@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans "Регистрация" %}
+{% endblock %}
+
+{% block content %}
+  <div class=" mt-md-4">
+
+    <h1 class="fw-bold mb-2">{% trans "Регистрация" %}</h1>
+    <p class="text-white-50 mb-5">Придумайте логин и уникальный пароль!</p>
+
+    {% trans "Зарегистрироваться" as btn_text %}
+    {% include "includes/form.html" with form=form btn_text=btn_text %}
+
+  </div>
+
+  <div>
+    <p class="mb-0">Уже зарегистрированы? <a href="{% url 'users:login' %}" class="text-white-50 fw-bold">{% trans "Войти" %}</a></p>
+  </div>
+
+{% endblock %}
