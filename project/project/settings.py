@@ -24,19 +24,22 @@ ALLOWED_HOSTS = os.getenv(
     '127.0.0.1',
 ).split(',')
 
-
 # Application definition
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
+    'dishes.apps.DishesConfig',
+    'feedback.apps.FeedbackConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tz_detect',
     'sorl.thumbnail',
+    'tz_detect',
+    'taggit',
+    'taggit_selectize',
     'tinymce',
 ]
 
@@ -146,9 +149,9 @@ if DEBUG:
     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
     INSTALLED_APPS += ('debug_toolbar',)
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = BASE_DIR / 'send_mail'
-DEFAULT_FROM_EMAIL = os.getenv('EMAIL_TO_SEND_MESSAGES')
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 AUTHENTICATION_BACKENDS = [
     'users.backends.AuthByEmailOrUsernameBackend',
@@ -163,3 +166,39 @@ MAX_FAILED_LOGIN_ATTEMPTS = int(os.getenv('MAX_FAILED_LOGIN_ATTEMPTS', 3))
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+TAGGIT_CASE_INSENSITIVE = True
+TAGGIT_TAGS_FROM_STRING = 'taggit_selectize.utils.parse_tags'
+TAGGIT_STRING_FROM_TAGS = 'taggit_selectize.utils.join_tags'
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'modern',
+    'width': 'auto',
+    'plugins': [
+        'advlist autolink lists charmap print preview hr anchor',
+        'searchreplace wordcount nonbreaking save fullscreen',
+        'emoticons template paste textcolor colorpicker textpattern',
+    ],
+    'toolbar1': (
+        'undo redo | '
+        'bold italic underline strikethrough | '
+        'alignleft aligncenter alignright alignjustify | '
+        'bullist numlist outdent indent | '
+        'forecolor backcolor'
+    ),
+    'toolbar2': (
+        'styleselect formatselect fontselect fontsizeselect | '
+        'emoticons | '
+        'preview'
+    ),
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / 'send_mail'
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_TO_SEND_MESSAGES')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL') == 'True'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')

@@ -4,6 +4,7 @@ import django.contrib.auth.forms
 import django.contrib.auth.views
 import django.urls
 
+import core.forms
 import users.forms
 import users.views
 
@@ -31,7 +32,8 @@ urlpatterns = [
             form_class=type(
                 'BootstrapPasswordChangeForm',
                 (
-                    users.forms.BootstrapFormMixin,
+                    core.forms.BootstrapClassFormMixin,
+                    core.forms.BootstrapPlaceholderFormMixin,
                     django.contrib.auth.forms.PasswordChangeForm,
                 ),
                 {},
@@ -53,7 +55,8 @@ urlpatterns = [
             form_class=type(
                 'BootstrapPasswordResetForm',
                 (
-                    users.forms.BootstrapFormMixin,
+                    core.forms.BootstrapClassFormMixin,
+                    core.forms.BootstrapPlaceholderFormMixin,
                     django.contrib.auth.forms.PasswordResetForm,
                 ),
                 {},
@@ -76,7 +79,8 @@ urlpatterns = [
             form_class=type(
                 'BootstrapSetPasswordForm',
                 (
-                    users.forms.BootstrapFormMixin,
+                    core.forms.BootstrapClassFormMixin,
+                    core.forms.BootstrapPlaceholderFormMixin,
                     django.contrib.auth.forms.SetPasswordForm,
                 ),
                 {},

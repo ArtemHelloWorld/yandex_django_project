@@ -4,26 +4,23 @@ import django.contrib.auth.forms
 import django.contrib.auth.models
 import django.forms
 
+import core.forms
 import users.models
 import users.services
 
 
-class BootstrapFormMixin:
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.visible_fields():
-            field.field.widget.attrs['class'] = 'form-control form-control-lg'
-            field.field.widget.attrs['placeholder'] = field.field.label
-
-
 class PasswordResetForm(
-    BootstrapFormMixin, django.contrib.auth.forms.PasswordResetForm
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.contrib.auth.forms.PasswordResetForm,
 ):
     pass
 
 
 class SignUpForm(
-    BootstrapFormMixin, django.contrib.auth.forms.UserCreationForm
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.contrib.auth.forms.UserCreationForm,
 ):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -60,6 +57,8 @@ class SignUpForm(
 
 
 class CustomAuthenticationForm(
-    BootstrapFormMixin, django.contrib.auth.forms.AuthenticationForm
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.contrib.auth.forms.AuthenticationForm,
 ):
     username = django.forms.CharField(label='Логин или почта', max_length=254)
