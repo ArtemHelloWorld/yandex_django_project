@@ -7,18 +7,18 @@ import django.core.signing
 import django.urls
 
 MESSAGE_REGISTRATION = 'Для завершения регистрации перейдите по ссылке:\n{}'
-MESSAGE_ACTIVATION_BACK = (
-    'Вы превысили максимально количство '
+MESSAGE_REACTIVATION = (
+    'Вы превысили максимальное количество '
     'попыток входа в аккаунт.\n'
     'Для активации перейдите по ссылке:\n{}'
 )
 
 
-def send_email_with_activation_link(request, user, activation_back=False):
-    if activation_back:
-        message = MESSAGE_ACTIVATION_BACK.format(
+def send_email_with_activation_link(request, user, reactivation=False):
+    if reactivation:
+        message = MESSAGE_REACTIVATION.format(
             request.build_absolute_uri(
-                generate_activation_link(user, activation_back=True)
+                generate_activation_link(user, reactivation=True)
             )
         )
     else:
@@ -34,10 +34,10 @@ def send_email_with_activation_link(request, user, activation_back=False):
     )
 
 
-def generate_activation_link(user, activation_back=False):
+def generate_activation_link(user, reactivation=False):
     signer = django.core.signing.TimestampSigner()
-    if activation_back:
-        viewname = 'users:back_activate'
+    if reactivation:
+        viewname = 'users:reactivation'
     else:
         viewname = 'users:signup_activate'
 
@@ -69,13 +69,13 @@ def generate_normalize_email(email):
 
         name = name.split('+')[0]
 
-        if 'ya.ru' == domain:
+        if domain == 'ya.ru':
             domain = 'yandex.ru'
 
-        if 'gmail.com' == domain:
+        if domain == 'gmail.com':
             name = name.replace('.', '')
 
-        if 'yandex.ru' == domain:
+        if domain == 'yandex.ru':
             name = name.replace('.', '-')
 
         return f'{name}@{domain}'

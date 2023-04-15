@@ -35,7 +35,7 @@ class AuthByEmailOrUsernameBackend(django.contrib.auth.backends.BaseBackend):
                 user.save()
 
                 users.services.send_email_with_activation_link(
-                    request, user, activation_back=True
+                    request, user, reactivation=True
                 )
 
                 raise django.forms.ValidationError(

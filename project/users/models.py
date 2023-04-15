@@ -29,7 +29,7 @@ class Profile(django.db.models.Model):
 
 
 class User(django.contrib.auth.models.User):
-    objects = users.managers.MyUserManager()
+    objects = users.managers.UserManager()
 
     class Meta:
         proxy = True
