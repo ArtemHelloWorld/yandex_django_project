@@ -13,9 +13,11 @@ class FeedbackView(django.views.generic.FormView):
     def form_valid(self, form):
         django.core.mail.send_mail(
             'Спасибо за заполнение формы!',
-            ('Благодарим Вас за отзыв о работе нашего сервиса. '
-             f'Содержимое вашего письма - "{form.cleaned_data["text"]}"\n'
-             'Скоро мы с Вами свяжемся!'),
+            (
+                'Благодарим Вас за отзыв о работе нашего сервиса. '
+                f'Содержимое вашего письма - "{form.cleaned_data["text"]}"\n'
+                'Скоро мы с Вами свяжемся!'
+            ),
             django.conf.settings.EMAIL_HOST_USER,
             [form.cleaned_data['mail']],
             fail_silently=False,
@@ -25,8 +27,9 @@ class FeedbackView(django.views.generic.FormView):
             **form.cleaned_data
         )
         feedback_item.save()
-        django.contrib.messages.success(self.request,
-                                        'Форма отправлена успешно!')
+        django.contrib.messages.success(
+            self.request, 'Форма отправлена успешно!'
+        )
         return django.shortcuts.redirect(
             django.urls.reverse('feedback:feedback'),
         )

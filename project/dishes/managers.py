@@ -28,5 +28,4 @@ class IngredientInstanceManager(django.db.models.Manager):
             .get_queryset()
             .select_related('ingredient')
             .select_related('dish')
-
         )

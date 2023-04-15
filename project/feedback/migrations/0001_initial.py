@@ -4,19 +4,37 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='Feedback',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.TextField(default='Всё хорошо!', verbose_name='текст')),
-                ('mail', models.EmailField(default='example@mail.ru', max_length=254, verbose_name='электронная почта')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
+                    'text',
+                    models.TextField(
+                        default='Всё хорошо!', verbose_name='текст'
+                    ),
+                ),
+                (
+                    'mail',
+                    models.EmailField(
+                        default='example@mail.ru',
+                        max_length=254,
+                        verbose_name='электронная почта',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'фидбек',

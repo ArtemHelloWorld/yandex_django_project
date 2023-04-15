@@ -79,8 +79,7 @@ class DishSearchView(django.views.generic.TemplateView):
             ]
 
             ingredient_instance = (
-                dishes.models.IngredientInstance.objects
-                .filter(
+                dishes.models.IngredientInstance.objects.filter(
                     ingredient__in=ingredients_list
                 )
             )

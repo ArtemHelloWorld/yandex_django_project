@@ -25,19 +25,15 @@ class FeedbackFormTests(django.test.TestCase):
 
     def test_create_feedback(self):
         feedback_item_count = feedback.models.Feedback.objects.count()
-        form_data = {
-            'text': 'Всё замечательно!',
-            'mail': '123@yandex.ru'
-        }
+        form_data = {'text': 'Всё замечательно!', 'mail': '123@yandex.ru'}
 
         response = django.test.Client().post(
-            django.urls.reverse('feedback:feedback'),
-            data=form_data
+            django.urls.reverse('feedback:feedback'), data=form_data
         )
 
         self.assertRedirects(
-            response,
-            django.urls.reverse('feedback:feedback')
+            response, django.urls.reverse('feedback:feedback')
         )
-        self.assertEqual(feedback.models.Feedback.objects.count(),
-                         feedback_item_count + 1)
+        self.assertEqual(
+            feedback.models.Feedback.objects.count(), feedback_item_count + 1
+        )
