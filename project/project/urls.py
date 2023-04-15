@@ -11,6 +11,7 @@ urlpatterns = [
     django.urls.path('taggit/', django.urls.include('taggit_selectize.urls')),
     django.urls.path('tinymce/', django.urls.include('tinymce.urls')),
     django.urls.path('tz_detect/', django.urls.include('tz_detect.urls')),
+    django.urls.path('feedback/', django.urls.include('feedback.urls')),
     django.urls.path('admin/', django.contrib.admin.site.urls),
     django.urls.path('', django.urls.include('home.urls')),
 ]
