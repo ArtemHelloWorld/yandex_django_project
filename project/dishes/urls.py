@@ -13,4 +13,9 @@ urlpatterns = [
         dishes.views.DishDetailView.as_view(),
         name='dish_detail',
     ),
+    django.urls.path(
+        'search',
+        dishes.views.DishSearchView.as_view(),
+        name='dishes_search',
+    ),
 ]

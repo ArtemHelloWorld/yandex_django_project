@@ -148,6 +148,10 @@ if DEBUG:
     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
     INSTALLED_APPS += ('debug_toolbar',)
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / 'send_mail'
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_TO_SEND_MESSAGES')

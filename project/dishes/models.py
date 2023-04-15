@@ -1,5 +1,3 @@
-import datetime
-
 import django.core.validators
 import django.db.models
 import django.urls
@@ -32,6 +30,8 @@ class DishType(core.models.NameFieldMixin):
 
 
 class IngredientInstance(django.db.models.Model):
+    objects = dishes.managers.IngredientInstanceManager()
+
     KILOGRAMS = 'kg'
     GRAM = 'gram'
     LITERS = 'liters'
@@ -145,8 +145,8 @@ class Dish(django.db.models.Model):
         verbose_name='сложность блюда',
         help_text='Сложность блюда от 1 до 5',
     )
+
     cooking_time = django.db.models.DurationField(
-        default=datetime.timedelta(minutes=30),
         verbose_name='время готовки',
         help_text='Время готовки',
     )
