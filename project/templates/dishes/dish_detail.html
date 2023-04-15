@@ -2,6 +2,8 @@
 {% load static %}
 {% load i18n %}
 {% load thumbnail %}
+{% load custom_formats %}
+
 
 {% block title %}{{ dish.name }}{% endblock %}
 
@@ -15,7 +17,7 @@
       {% thumbnail dish.image_main "500" padding=True as image %}
         <img src="{{ image.url }}" class="img-fluid">
       {% endthumbnail %}
-      <p>Тип: {{ dish.type.name }} | Время готовки: {{ dish.cooking_time }} | Сложность: {{ dish.complexity }}/5 </p>
+      <p>Тип: {{ dish.type.name }} | Время готовки {{ dish.cooking_time|duration_format }} | Сложность: {{ dish.complexity }}/5 </p>
       <div>
         <strong>Тэги:</strong>
         <p>

@@ -11,7 +11,6 @@ class NewDishView(
     django.views.generic.TemplateView,
 ):
     template_name = 'dishes/dish_new.html'
-    form_class = dishes.forms.NewDishForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,3 +56,61 @@ class DishDetailView(django.views.generic.DetailView):
     model = dishes.models.Dish
     pk_url_kwarg = 'dish_pk'
     template_name = 'dishes/dish_detail.html'
+
+
+class DishSearchView(django.views.generic.TemplateView):
+    template_name = 'dishes/dishes_search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        dishes_search_formset = dishes.forms.DishesSearchFormSet()
+
+        context['dishes_search_formset'] = dishes_search_formset
+
+        return context
+
+    def post(self, request):
+        dishes_search_formset = dishes.forms.DishesSearchFormSet(request.POST)
+        if dishes_search_formset.is_valid():
+            ingredients = dishes_search_formset.cleaned_data
+            ingredients_list = [
+                ingredient.get('ingredient') for ingredient in ingredients
+            ]
+
+            ingredient_instance = (
+                dishes.models.IngredientInstance.objects
+                .filter(
+                    ingredient__in=ingredients_list
+                )
+            )
+
+            dishes_dict = {}
+            for i in ingredient_instance:
+                if i.dish in dishes_dict:
+                    dishes_dict[i.dish].append(i)
+                else:
+                    dishes_dict[i.dish] = [i]
+
+            dishes_dict = dict(
+                sorted(dishes_dict.items(), key=lambda x: len(x[1]))
+            )
+
+            dishes_to_buy = {}
+            for dish, ingredients in dishes_dict.items():
+                dishes_to_buy[dish] = [
+                    item
+                    for item in dish.ingredients.all()
+                    if item not in ingredients
+                ]
+
+            return django.shortcuts.render(
+                request,
+                self.template_name,
+                {
+                    'dishes_search_formset': (
+                        dishes.forms.DishesSearchFormSet()
+                    ),
+                    'dishes_dict': dishes_to_buy,
+                },
+            )
