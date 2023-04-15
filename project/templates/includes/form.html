@@ -10,7 +10,7 @@
   {% for field in form %}
     <div class="form-outline form-white mb-4">
       {% for error in field.errors %}
-        {{ error|escape|linebreaks }}
+        <div class="text-danger">{{ error|escape|linebreaks }}</div>
       {% endfor %}
       {{ field }}
     </div>

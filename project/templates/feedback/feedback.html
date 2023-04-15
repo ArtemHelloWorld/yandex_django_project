@@ -1,0 +1,29 @@
+{% extends 'users/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+  {% trans "Оставить фидбек" %}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class=" mt-md-4">
+
+    <h1 class="fw-bold mb-2">{% trans "Оставить фидбек" %}</h1>
+    <p class="text-white-50 mb-5">Здесь вы можете написать всё, что угодно</p>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible shadow fade show" role="alert">
+        {{ message | safe }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% trans "Отправить" as btn_text %}
+    {% include "includes/form.html" with form=form btn_text=btn_text %}
+
+  </div>
+{% endblock %}
