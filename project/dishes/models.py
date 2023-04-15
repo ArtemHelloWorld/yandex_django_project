@@ -32,6 +32,8 @@ class DishType(core.models.NameFieldMixin):
 
 
 class IngredientInstance(django.db.models.Model):
+    objects = dishes.managers.IngredientInstanceManager()
+
     KILOGRAMS = 'kg'
     GRAM = 'gram'
     LITERS = 'liters'
