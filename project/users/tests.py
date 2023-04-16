@@ -17,7 +17,7 @@ class SignUpTests(django.test.TestCase):
         self.client = django.test.Client()
 
     def test_signup_not_same_passwords(self):
-        count = django.contrib.auth.models.User.objects.count()
+        count = users.models.User.objects.count()
         form_data = {
             'username': 'testusername',
             'email': 'testmail@mail.ru',
@@ -29,12 +29,10 @@ class SignUpTests(django.test.TestCase):
             data=form_data,
             follow=True,
         )
-        self.assertEqual(
-            count, django.contrib.auth.models.User.objects.count()
-        )
+        self.assertEqual(count, users.models.User.objects.count())
 
     def test_signup_incorrect_passwords(self):
-        count = django.contrib.auth.models.User.objects.count()
+        count = users.models.User.objects.count()
         form_data = {
             'username': 'testusername',
             'email': 'testmail@mail.ru',
@@ -46,12 +44,10 @@ class SignUpTests(django.test.TestCase):
             data=form_data,
             follow=True,
         )
-        self.assertEqual(
-            count, django.contrib.auth.models.User.objects.count()
-        )
+        self.assertEqual(count, users.models.User.objects.count())
 
     def test_signup_correct_password(self):
-        count = django.contrib.auth.models.User.objects.count()
+        count = users.models.User.objects.count()
         form_data = {
             'username': 'testusername',
             'email': 'testmail@mail.ru',
@@ -63,9 +59,7 @@ class SignUpTests(django.test.TestCase):
             data=form_data,
             follow=True,
         )
-        self.assertEqual(
-            count + 1, django.contrib.auth.models.User.objects.count()
-        )
+        self.assertEqual(count + 1, users.models.User.objects.count())
 
     @django.test.override_settings(ACTIVATE_USERS=True)
     def test_signup_activate_user_true(self):
@@ -81,9 +75,7 @@ class SignUpTests(django.test.TestCase):
             follow=True,
         )
         self.assertEqual(
-            django.contrib.auth.models.User.objects.get(
-                username='testusername'
-            ).is_active,
+            users.models.User.objects.get(username='testusername').is_active,
             True,
         )
 
@@ -101,9 +93,7 @@ class SignUpTests(django.test.TestCase):
             follow=True,
         )
         self.assertEqual(
-            django.contrib.auth.models.User.objects.get(
-                username='testusername'
-            ).is_active,
+            users.models.User.objects.get(username='testusername').is_active,
             False,
         )
 
@@ -165,7 +155,7 @@ class SignUpTests(django.test.TestCase):
             )
 
             self.assertEqual(
-                django.contrib.auth.models.User.objects.get(
+                users.models.User.objects.get(
                     username='testusername'
                 ).is_active,
                 True,
@@ -197,7 +187,7 @@ class SignUpTests(django.test.TestCase):
             )
 
             self.assertEqual(
-                django.contrib.auth.models.User.objects.get(
+                users.models.User.objects.get(
                     username='testusername'
                 ).is_active,
                 False,
@@ -453,7 +443,7 @@ class ReactivationClass(django.test.TestCase):
             )
 
             self.assertEqual(
-                django.contrib.auth.models.User.objects.get(
+                users.models.User.objects.get(
                     username='testusername'
                 ).is_active,
                 True,
@@ -485,7 +475,7 @@ class ReactivationClass(django.test.TestCase):
             )
 
             self.assertEqual(
-                django.contrib.auth.models.User.objects.get(
+                users.models.User.objects.get(
                     username='testusername'
                 ).is_active,
                 False,

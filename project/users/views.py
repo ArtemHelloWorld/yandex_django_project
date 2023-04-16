@@ -21,7 +21,6 @@ class SignupView(django.views.generic.FormView):
         if django.conf.settings.ACTIVATE_USERS:
             user.is_active = True
             user.save()
-            users.models.Profile.objects.create(user=user)
 
             return django.shortcuts.redirect('users:login')
         else:
@@ -50,7 +49,6 @@ class SignupActivateView(django.views.generic.TemplateView):
         if user and not user.is_active:
             user.is_active = True
             user.save()
-            users.models.Profile.objects.create(user=user)
 
             context['message'] = 'Вы успешно зерегистрировались'
 
@@ -76,3 +74,30 @@ class ReactivationView(django.views.generic.TemplateView):
 
         else:
             context['message'] = 'Неверная ссылка или действие ссылки истекло'
+
+
+class ProfileView(
+    django.contrib.auth.mixins.LoginRequiredMixin,
+    django.views.generic.TemplateView,
+):
+    template_name = 'users/profile/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user = self.request.user
+        user_form = users.forms.UserForm(instance=user)
+
+        context['user_form'] = user_form
+        context['identity_confirmed'] = user.identity_confirmed
+        return context
+
+    def post(self, request):
+        user = request.user
+        user_form = users.forms.UserForm(
+            request.POST, request.FILES, instance=user
+        )
+
+        if user_form.is_valid():
+            user_form.save()
+        return django.shortcuts.redirect('users:profile')

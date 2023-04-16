@@ -6,6 +6,8 @@ import django.core.mail
 import django.core.signing
 import django.urls
 
+import users.models
+
 MESSAGE_REGISTRATION = 'Для завершения регистрации перейдите по ссылке:\n{}'
 MESSAGE_REACTIVATION = (
     'Вы превысили максимальное количество '
@@ -58,7 +60,7 @@ def validate_activation_link(value, **kwargs):
     except Exception:
         return None
 
-    user = django.contrib.auth.models.User.objects.get(username=username)
+    user = users.models.User.objects.get(username=username)
     return user
 
 

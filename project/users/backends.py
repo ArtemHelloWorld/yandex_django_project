@@ -4,6 +4,7 @@ import django.contrib.auth.hashers
 import django.contrib.auth.models
 import django.forms
 
+import users.models
 import users.services
 
 
@@ -18,8 +19,8 @@ class AuthByEmailOrUsernameBackend(django.contrib.auth.backends.BaseBackend):
             query_filter = {'username': username}
 
         try:
-            user = django.contrib.auth.models.User.objects.get(**query_filter)
-        except django.contrib.auth.models.User.DoesNotExist:
+            user = users.models.User.objects.get(**query_filter)
+        except users.models.User.DoesNotExist:
             return None
 
         if user.check_password(password):
@@ -47,6 +48,6 @@ class AuthByEmailOrUsernameBackend(django.contrib.auth.backends.BaseBackend):
 
     def get_user(self, user_id):
         try:
-            return django.contrib.auth.models.User.objects.get(pk=user_id)
-        except django.contrib.auth.models.User.DoesNotExist:
+            return users.models.User.objects.get(pk=user_id)
+        except users.models.User.DoesNotExist:
             return None
