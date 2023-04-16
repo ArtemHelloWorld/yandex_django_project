@@ -11,14 +11,18 @@
 
 <h1>{% trans "Мой профиль" %}
   {% if identity_confirmed %}
-      <img src="{% static 'img/identity-confirmed-badge-25.jpg' %}" class="img-fluid">
+      <img src="{% static 'img/identity-confirmed-badge-50.jpg' %}" class="img-fluid">
   {% endif %}
 </h1>
 <div class="container pt-4">
   <div class="row">
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ user_form.as_p }}
+      {% for field in user_form %}
+        <div class="form-outline form-white mb-4">
+          {{ field }}
+        </div>
+      {% endfor %}
       <a href="{% url 'users:password_change' %}" type="button" class="btn btn-outline-dark me-2">{% trans "Изменить пароль" %}</a>
       <button type="submit" class="btn btn-outline-dark me-2">{% trans "Сохранить изменения" %}</button>
     </form>
