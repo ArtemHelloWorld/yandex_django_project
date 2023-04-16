@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('users', '0001_initial'),
     ]
@@ -20,6 +19,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='identity_confirmed',
-            field=models.BooleanField(default=False, verbose_name='подтверждение личности'),
+            field=models.BooleanField(
+                default=False, verbose_name='подтверждение личности'
+            ),
         ),
     ]

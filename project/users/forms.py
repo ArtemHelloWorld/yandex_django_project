@@ -80,6 +80,4 @@ class UserForm(
             'birthday',
             'image',
         )
-        readonly = (
-            'email',
-        )
+        readonly = ('email',)

@@ -6,7 +6,6 @@ import django.core.mail
 import django.core.signing
 import django.urls
 
-
 import users.models
 
 MESSAGE_REGISTRATION = 'Для завершения регистрации перейдите по ссылке:\n{}'

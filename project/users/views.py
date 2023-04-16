@@ -100,4 +100,4 @@ class ProfileView(
 
         if user_form.is_valid():
             user_form.save()
-        return django.shortcuts.redirect("users:profile")
+        return django.shortcuts.redirect('users:profile')

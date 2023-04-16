@@ -4,8 +4,8 @@ import django.contrib.auth.hashers
 import django.contrib.auth.models
 import django.forms
 
-import users.services
 import users.models
+import users.services
 
 
 class AuthByEmailOrUsernameBackend(django.contrib.auth.backends.BaseBackend):
