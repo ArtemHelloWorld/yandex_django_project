@@ -28,7 +28,7 @@
             <a href="" type="button" class="btn btn-outline-light me-2">{% trans "Пользователи" %}</a>
           {% endif %}
             <a href="{% url 'users:logout' %}" type="button" class="btn btn-outline-light me-2">{% trans "Выйти" %}</a>
-            <a href="" type="button" class="btn btn-outline-light me-2">{% trans "Мой профиль" %}</a>
+            <a href="{% url 'users:profile' %}" type="button" class="btn btn-outline-light me-2">{% trans "Мой профиль" %}</a>
         {% else %}
           <a href="{% url 'users:login' %}" type="button" class="btn btn-outline-light me-2">{% trans "Войти" %}</a>
           <a href="{% url 'users:signup' %}" type="button" class="btn btn-outline-light me-2">{% trans "Зарегистрироваться" %}</a>

@@ -1,21 +1,8 @@
 import django.contrib.auth.models
 import django.db.models
 
-import users.managers
 
-
-class Profile(django.db.models.Model):
-    user = django.db.models.OneToOneField(
-        django.contrib.auth.models.User,
-        on_delete=django.db.models.CASCADE,
-        null=False,
-        blank=False,
-    )
-
-    birthday = django.db.models.DateField(
-        null=True, blank=True, verbose_name='дата рождения'
-    )
-
+class User(django.contrib.auth.models.AbstractUser):
     image = django.db.models.ImageField(
         upload_to='item/main/%Y/%m/%d',
         null=True,
@@ -23,13 +10,11 @@ class Profile(django.db.models.Model):
         verbose_name='аватарка',
     )
 
-    class Meta:
-        verbose_name = 'профиль'
-        verbose_name_plural = 'профиль'
+    birthday = django.db.models.DateField(
+        null=True, blank=True, verbose_name='дата рождения'
+    )
 
-
-class User(django.contrib.auth.models.User):
-    objects = users.managers.UserManager()
-
-    class Meta:
-        proxy = True
+    identity_confirmed = django.db.models.BooleanField(
+        default=False,
+        verbose_name='подтверждение личности'
+    )

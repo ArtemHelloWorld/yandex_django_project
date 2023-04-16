@@ -113,4 +113,7 @@ urlpatterns = [
         users.views.ReactivationView.as_view(),
         name='reactivation',
     ),
+    django.urls.path(
+        'profile/', users.views.ProfileView.as_view(), name='profile'
+    ),
 ]

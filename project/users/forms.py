@@ -9,14 +9,6 @@ import users.models
 import users.services
 
 
-class PasswordResetForm(
-    core.forms.BootstrapClassFormMixin,
-    core.forms.BootstrapPlaceholderFormMixin,
-    django.contrib.auth.forms.PasswordResetForm,
-):
-    pass
-
-
 class SignUpForm(
     core.forms.BootstrapClassFormMixin,
     core.forms.BootstrapPlaceholderFormMixin,
@@ -31,9 +23,7 @@ class SignUpForm(
     def clean_username(self):
         username = self.cleaned_data.get('username')
 
-        if django.contrib.auth.models.User.objects.filter(
-            username=username
-        ).exists():
+        if users.models.User.objects.filter(username=username).exists():
             raise django.forms.ValidationError('Такое имя уже существует')
 
         return username
@@ -43,15 +33,13 @@ class SignUpForm(
 
         normalized_email = users.services.generate_normalize_email(email)
 
-        if django.contrib.auth.models.User.objects.filter(
-            email=normalized_email
-        ).exists():
+        if users.models.User.objects.filter(email=normalized_email).exists():
             raise django.forms.ValidationError('Такая почта уже существует')
 
         return normalized_email
 
     class Meta:
-        model = django.contrib.auth.models.User
+        model = users.models.User
         fields = ('username', 'email', 'password1', 'password2')
         required = ('username', 'email', 'password1', 'password2')
 
@@ -62,3 +50,36 @@ class CustomAuthenticationForm(
     django.contrib.auth.forms.AuthenticationForm,
 ):
     username = django.forms.CharField(label='Логин или почта', max_length=254)
+
+
+class UserForm(
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.forms.ModelForm,
+):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields[
+            'birthday'
+        ].widget = django.contrib.admin.widgets.AdminDateWidget(
+            attrs={'type': 'date'}
+        )
+
+        for field in self.Meta.readonly:
+            self.fields[field].widget.attrs['readonly'] = True
+
+    class Meta:
+        model = users.models.User
+
+        fields = (
+            'email',
+            'username',
+            'first_name',
+            'last_name',
+            'birthday',
+            'image',
+        )
+        readonly = (
+            'email',
+        )
