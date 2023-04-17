@@ -16,9 +16,9 @@
 
     {% if messages %}
       {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-dismissible shadow fade show" role="alert">
-        {{ message | safe }}
-        </div>
+        <p class="form-status text-success">
+          {{ message | safe }}
+        </p>
       {% endfor %}
     {% endif %}
 

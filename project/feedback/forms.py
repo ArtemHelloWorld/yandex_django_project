@@ -9,10 +9,9 @@ class FeedbackForm(
     django.forms.Form,
 ):
     text = django.forms.CharField(
-        label='Ваше сообщение',
         widget=django.forms.Textarea,
-        max_length=1000,
+        label='Напишите всё, что хотите сказать',
     )
     mail = django.forms.EmailField(
-        label='Ваша почта',
+        label='Ваша электронная почта',
     )
