@@ -1,6 +1,11 @@
 from django import template
+import pymorphy2
+
 
 register = template.Library()
+
+hour_word = pymorphy2.MorphAnalyzer().parse('час')[0]
+minute_word = pymorphy2.MorphAnalyzer().parse('минута')[0]
 
 
 @register.filter(name='duration_format')
@@ -9,27 +14,9 @@ def duration_format(value):
     hours = int(hours)
     minutes = int(minutes)
 
-    if hours == 0:
-        hours_str = ''
-    elif hours == 1:
-        hours_str = '1 час '
-    elif hours <= 4:
-        hours_str = f'{hours} часа '
+    if hours and minutes:
+        return f'{hours} {hour_word.make_agree_with_number(hours).word} и {minutes} {minute_word.make_agree_with_number(minutes).word}'
+    elif hours:
+        return f'{hours} {hour_word.make_agree_with_number(hours).word}'
     else:
-        hours_str = f'{hours} часов '
-
-    if minutes == 0:
-        minutes_str = ''
-    elif minutes == 1:
-        minutes_str = '1 минута'
-    elif minutes <= 4:
-        minutes_str = f'{minutes} минуты'
-    else:
-        minutes_str = f'{minutes} минут'
-
-    if hours_str and minutes_str:
-        return f'{hours_str} и {minutes_str}'
-    elif hours_str:
-        return hours_str
-    else:
-        return minutes_str
+        return f'{minutes} {minute_word.make_agree_with_number(minutes).word}'
