@@ -1,4 +1,6 @@
+import re
 import django.db.models
+import transliterate
 
 
 class IntegerRangeField(django.db.models.IntegerField):
@@ -32,3 +34,24 @@ class NameFieldMixin(django.db.models.Model):
 
     class Meta:
         abstract = True
+
+
+class NormalizedNameFieldMixin(django.db.models.Model):
+    name_normalized = django.db.models.CharField(
+        max_length=200,
+    )
+
+    def save(self, *args, **kwargs):
+        self.name_normalized = self._generate_normalize_name()
+        super().save(*args, **kwargs)
+
+    def _generate_normalize_name(self):
+        normalized = self.name.lower()
+        normalized = re.sub(r'\W', '', normalized)
+        normalized = transliterate.translit(normalized, 'ru', reversed=True)
+
+        return normalized
+
+    class Meta:
+        abstract = True
+

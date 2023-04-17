@@ -11,7 +11,25 @@ import dishes.managers
 import users.models
 
 
-class Ingredient(core.models.NameFieldMixin):
+class Ingredient(
+    core.models.NameFieldMixin,
+    core.models.NormalizedNameFieldMixin,
+):
+    NOT_VERIFIED = 'not verified'
+    VERIFIED = 'verified'
+
+    VERIFIED_STATUS_CHOICES = [
+        (NOT_VERIFIED, 'Не проверено'),
+        (VERIFIED, 'Проверено'),
+    ]
+
+    moderation_status = django.db.models.CharField(
+        choices=VERIFIED_STATUS_CHOICES,
+        default=NOT_VERIFIED,
+        max_length=12,
+        verbose_name='статус модерации',
+    )
+
     class Meta:
         verbose_name = 'ингредиент'
         verbose_name_plural = 'ингредиенты'
