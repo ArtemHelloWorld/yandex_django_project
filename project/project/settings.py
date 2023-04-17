@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'dishes.apps.DishesConfig',
     'feedback.apps.FeedbackConfig',
+    'core.apps.CoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
