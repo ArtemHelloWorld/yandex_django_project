@@ -129,7 +129,7 @@ class Dish(django.db.models.Model):
     recipe = tinymce.HTMLField(
         validators=[
             django.core.validators.MinLengthValidator(
-                300,
+                50,
                 'Рецепт слишком маленький. '
                 'Пожалуйста, распишите этапы приготовления более подробно.',
             )
