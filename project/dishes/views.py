@@ -1,5 +1,6 @@
 import django.contrib.auth.mixins
 import django.shortcuts
+import django.urls
 import django.views.generic
 
 import dishes.forms
@@ -50,6 +51,12 @@ class NewDishView(
                     'ingredient_formset': ingredient_formset,
                 },
             )
+
+
+class NewIngredientView(django.views.generic.CreateView):
+    form_class = dishes.forms.NewIngredientForm
+    template_name = 'dishes/ingredient_new.html'
+    success_url = django.urls.reverse_lazy('dishes:dish_new')
 
 
 class DishDetailView(django.views.generic.DetailView):

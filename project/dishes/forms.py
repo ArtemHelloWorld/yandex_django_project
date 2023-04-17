@@ -24,6 +24,16 @@ class NewDishForm(
         widgets = {'cooking_time': dishes.widgets.DurationWidget()}
 
 
+class NewIngredientForm(
+    core.forms.BootstrapClassFormMixin,
+    core.forms.BootstrapPlaceholderFormMixin,
+    django.forms.ModelForm,
+):
+    class Meta:
+        model = dishes.models.Ingredient
+        fields = (dishes.models.Ingredient.name.field.name,)
+
+
 class IngredientForm(
     core.forms.BootstrapClassFormMixin,
     core.forms.BootstrapPlaceholderFormMixin,
@@ -42,23 +52,6 @@ IngredientFormSet = django.forms.inlineformset_factory(
     dishes.models.Dish,
     dishes.models.IngredientInstance,
     form=IngredientForm,
-    extra=1,
-    can_delete=False,
-)
-
-
-class DishesSearchForm(
-    core.forms.BootstrapSelectClassFormMixin,
-    django.forms.Form,
-):
-    ingredient = django.forms.ModelChoiceField(
-        queryset=dishes.models.Ingredient.objects.all(),
-        empty_label='выберите ингредиент',
-    )
-
-
-DishesSearchFormSet = django.forms.formset_factory(
-    form=DishesSearchForm,
     extra=1,
     can_delete=False,
 )
