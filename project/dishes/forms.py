@@ -62,7 +62,7 @@ class DishesSearchForm(
     django.forms.Form,
 ):
     ingredient = django.forms.ModelChoiceField(
-        queryset=dishes.models.Ingredient.objects.all(),
+        queryset=dishes.models.Ingredient.objects.order_by('name'),
         empty_label='выберите ингредиент',
     )
 
