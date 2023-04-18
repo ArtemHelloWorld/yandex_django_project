@@ -89,15 +89,14 @@ class DishSearchView(django.views.generic.TemplateView):
                 ingredient.get('ingredient')
                 for ingredient in dishes_search_formset.cleaned_data
             ]
-            
-            dishes_dict = dishes.services.search_dishes_by_ingredients(user_ingredients)
+
+            dishes_dict = dishes.services.search_dishes_by_ingredients(
+                user_ingredients
+            )
 
             if len(dishes_dict):
-                context[
-                    'dishes_dict'
-                ] = dishes_dict
+                context['dishes_dict'] = dishes_dict
             else:
                 context['message'] = 'По вашему запросу ничего не найдено'
-
 
         return django.shortcuts.render(request, self.template_name, context)
