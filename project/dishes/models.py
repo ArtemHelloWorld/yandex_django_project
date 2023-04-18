@@ -33,6 +33,7 @@ class Ingredient(
     class Meta:
         verbose_name = 'ингредиент'
         verbose_name_plural = 'ингредиенты'
+        ordering = ('name', 'pk')
 
     def __str__(self):
         return self.name
