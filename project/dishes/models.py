@@ -67,7 +67,7 @@ class IngredientInstance(django.db.models.Model):
         (TABLE_SPOON, 'столовая ложка'),
         (TEA_SPOON, 'чайная ложка'),
         (PIECE, 'штука'),
-        (PINCH, 'щепотка')
+        (PINCH, 'щепотка'),
     ]
     dish = django.db.models.ForeignKey(
         'Dish',
@@ -82,9 +82,7 @@ class IngredientInstance(django.db.models.Model):
     )
 
     quantity = django.db.models.FloatField(
-        validators=[
-            django.core.validators.MinValueValidator(0.0)
-        ],
+        validators=[django.core.validators.MinValueValidator(0.0)],
         default=None,
         verbose_name='объём ингредиента',
         help_text='Укажите объём ингредиента',

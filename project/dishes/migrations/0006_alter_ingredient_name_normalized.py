@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('dishes', '0005_alter_ingredient_name_normalized'),
     ]

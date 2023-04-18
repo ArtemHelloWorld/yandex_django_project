@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('dishes', '0006_alter_ingredient_name_normalized'),
     ]
@@ -14,11 +13,30 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='ingredientinstance',
             name='quantity',
-            field=models.FloatField(default=None, help_text='Укажите объём ингредиента', validators=[django.core.validators.MinValueValidator(0.0)], verbose_name='объём ингредиента'),
+            field=models.FloatField(
+                default=None,
+                help_text='Укажите объём ингредиента',
+                validators=[django.core.validators.MinValueValidator(0.0)],
+                verbose_name='объём ингредиента',
+            ),
         ),
         migrations.AlterField(
             model_name='ingredientinstance',
             name='quantity_type',
-            field=models.CharField(choices=[('kg', 'килограмм'), ('gram', 'грамм'), ('liters', 'литр'), ('milliliters', 'миллилитр'), ('table spoon', 'столовая ложка'), ('tea spoon', 'чайная ложка'), ('piece', 'штука'), ('pinch', 'щепотка')], help_text='Укажите тип объёма ингредиента. Максимум 100 символов', max_length=11, verbose_name='тип объёма'),
+            field=models.CharField(
+                choices=[
+                    ('kg', 'килограмм'),
+                    ('gram', 'грамм'),
+                    ('liters', 'литр'),
+                    ('milliliters', 'миллилитр'),
+                    ('table spoon', 'столовая ложка'),
+                    ('tea spoon', 'чайная ложка'),
+                    ('piece', 'штука'),
+                    ('pinch', 'щепотка'),
+                ],
+                help_text='Укажите тип объёма ингредиента. Максимум 100 символов',
+                max_length=11,
+                verbose_name='тип объёма',
+            ),
         ),
     ]

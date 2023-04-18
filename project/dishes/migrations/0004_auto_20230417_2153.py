@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('dishes', '0003_alter_dish_recipe'),
     ]
@@ -13,7 +12,15 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='ingredient',
             name='moderation_status',
-            field=models.CharField(choices=[('not verified', 'Не проверено'), ('verified', 'Проверено')], default='not verified', max_length=12, verbose_name='статус модерации'),
+            field=models.CharField(
+                choices=[
+                    ('not verified', 'Не проверено'),
+                    ('verified', 'Проверено'),
+                ],
+                default='not verified',
+                max_length=12,
+                verbose_name='статус модерации',
+            ),
         ),
         migrations.AddField(
             model_name='ingredient',
