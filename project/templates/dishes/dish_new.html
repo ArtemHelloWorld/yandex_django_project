@@ -38,12 +38,15 @@
 
         {{ ingredient_formset.management_form }}
         <div class="table row">
+          {% for error in ingredient_formset.non_form_errors%}
+            <div class="text-danger">{{ error|escape|linebreaks }}</div>
+          {% endfor %}
           {% for form in ingredient_formset.forms %}
-                {% for field in form %}
-                  <div class='col-md-4'>
-                    {{ field }}
-                  </div>
-                {% endfor %}
+            {% for field in form %}
+              <div class='col-md-4'>
+                {{ field }}
+              </div>
+            {% endfor %}
           {% endfor %}
         </div>
         <p><a href="{% url 'dishes:new_ingredient' %}">{% trans "Моего ингредиента нет в списке" %}</a></p>

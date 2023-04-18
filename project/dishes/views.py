@@ -16,6 +16,7 @@ class NewDishView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+       
 
         new_dish_form = dishes.forms.NewDishForm()
         ingredient_formset = dishes.forms.IngredientFormSet()
@@ -28,7 +29,7 @@ class NewDishView(
     def post(self, request):
         new_dish_form = dishes.forms.NewDishForm(request.POST, request.FILES)
         ingredient_formset = dishes.forms.IngredientFormSet(request.POST)
-
+        
         if new_dish_form.is_valid() and ingredient_formset.is_valid():
             dish = new_dish_form.save(commit=False)
 
