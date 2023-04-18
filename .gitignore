@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 .idea/
-/project/media/
+/project/media/cache
