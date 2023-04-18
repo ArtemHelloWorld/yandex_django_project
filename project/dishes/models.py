@@ -56,6 +56,8 @@ class IngredientInstance(django.db.models.Model):
     MILLILITERS = 'milliliters'
     TABLE_SPOON = 'table spoon'
     TEA_SPOON = 'tea spoon'
+    PIECE = 'piece'
+    PINCH = 'pinch'
 
     VOLUME_TYPE_CHOICES = [
         (KILOGRAMS, 'килограмм'),
@@ -64,6 +66,8 @@ class IngredientInstance(django.db.models.Model):
         (MILLILITERS, 'миллилитр'),
         (TABLE_SPOON, 'столовая ложка'),
         (TEA_SPOON, 'чайная ложка'),
+        (PIECE, 'штука'),
+        (PINCH, 'щепотка')
     ]
     dish = django.db.models.ForeignKey(
         'Dish',
