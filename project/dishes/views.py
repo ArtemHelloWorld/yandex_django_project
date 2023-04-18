@@ -16,7 +16,6 @@ class NewDishView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-       
 
         new_dish_form = dishes.forms.NewDishForm()
         ingredient_formset = dishes.forms.IngredientFormSet()
@@ -29,7 +28,7 @@ class NewDishView(
     def post(self, request):
         new_dish_form = dishes.forms.NewDishForm(request.POST, request.FILES)
         ingredient_formset = dishes.forms.IngredientFormSet(request.POST)
-        
+
         if new_dish_form.is_valid() and ingredient_formset.is_valid():
             dish = new_dish_form.save(commit=False)
 
@@ -100,10 +99,12 @@ class DishSearchView(django.views.generic.TemplateView):
             # ingredients_to_buy = {}
             # for dish in dishes_list:
             #     ingredients_to_buy[dish] = [
-            #         ingredient.ingredient for ingredient in dish.ingredients.all()
+            #         ingredient.ingredient for
+            #  ingredient in dish.ingredients.all()
             #         if ingredient.ingredient not in ingredients_list
             #     ]
             #
-            # context['dishes_dict'] = dict(sorted(ingredients_to_buy.items(), key=lambda x: len(x[1])))
+            # context['dishes_dict'] = dict(sorted(ingredients_to_buy.items(),
+            #  key=lambda x: len(x[1])))
 
         return django.shortcuts.render(request, self.template_name, context)
