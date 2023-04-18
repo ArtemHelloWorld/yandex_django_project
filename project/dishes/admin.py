@@ -12,6 +12,7 @@ class IngredientAdmin(django.contrib.admin.ModelAdmin):
     )
 
     list_display_links = (dishes.models.Ingredient.name.field.name,)
+    list_editable = (dishes.models.Ingredient.moderation_status.field.name,)
 
 
 @django.contrib.admin.register(dishes.models.IngredientInstance)
