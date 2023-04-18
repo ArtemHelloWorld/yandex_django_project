@@ -25,11 +25,16 @@ class IntegerRangeField(django.db.models.IntegerField):
         return super(IntegerRangeField, self).formfield(**defaults)
 
 
-class NameFieldMixin(django.db.models.Model):
+
+
+
+
+class UniqueNameFieldMixin(django.db.models.Model):
     name = django.db.models.CharField(
         max_length=100,
         verbose_name='название',
         help_text='Укажите название. Максимум 100 символов',
+        unique=True
     )
 
     class Meta:
@@ -47,7 +52,7 @@ class NormalizedNameFieldMixin(django.db.models.Model):
 
     def _generate_normalize_name(self):
         normalized = self.name.lower()
-        normalized = re.sub(r'\W', '', normalized)
+        normalized = re.sub(r'[\W\d]', '', normalized)
         normalized = transliterate.translit(normalized, 'ru', reversed=True)
 
         return normalized

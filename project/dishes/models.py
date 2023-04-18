@@ -12,7 +12,7 @@ import users.models
 
 
 class Ingredient(
-    core.models.NameFieldMixin,
+    core.models.UniqueNameFieldMixin,
     core.models.NormalizedNameFieldMixin,
 ):
     NOT_VERIFIED = 'not verified'
@@ -38,7 +38,7 @@ class Ingredient(
         return self.name
 
 
-class DishType(core.models.NameFieldMixin):
+class DishType(core.models.UniqueNameFieldMixin):
     class Meta:
         verbose_name = 'тип блюда'
         verbose_name_plural = 'типы блюд'
