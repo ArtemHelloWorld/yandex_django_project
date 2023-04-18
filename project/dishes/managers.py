@@ -14,10 +14,15 @@ class DishManager(django.db.models.Manager):
             .prefetch_related('tags')
         )
 
-    def active(self):
+    def on_home_page(self):
         return self.get_queryset().filter(
             django.db.models.Q(is_on_home_page=True)
             & django.db.models.Q(moderation_status=dishes.models.Dish.ADDED)
+        )
+
+    def active(self):
+        return self.get_queryset().filter(
+            django.db.models.Q(moderation_status=dishes.models.Dish.ADDED)
         )
 
 

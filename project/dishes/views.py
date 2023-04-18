@@ -89,22 +89,15 @@ class DishSearchView(django.views.generic.TemplateView):
                 ingredient.get('ingredient')
                 for ingredient in dishes_search_formset.cleaned_data
             ]
-            context[
-                'dishes_dict'
-            ] = dishes.services.search_dishes_by_ingredients(user_ingredients)
-            # dishes_list = dishes.models.Dish.objects.filter(
-            #     ingredients__ingredient__in=ingredients_list
-            # )
-            #
-            # ingredients_to_buy = {}
-            # for dish in dishes_list:
-            #     ingredients_to_buy[dish] = [
-            #         ingredient.ingredient for
-            #  ingredient in dish.ingredients.all()
-            #         if ingredient.ingredient not in ingredients_list
-            #     ]
-            #
-            # context['dishes_dict'] = dict(sorted(ingredients_to_buy.items(),
-            #  key=lambda x: len(x[1])))
+            
+            dishes_dict = dishes.services.search_dishes_by_ingredients(user_ingredients)
+
+            if len(dishes_dict):
+                context[
+                    'dishes_dict'
+                ] = dishes_dict
+            else:
+                context['message'] = 'По вашему запросу ничего не найдено'
+
 
         return django.shortcuts.render(request, self.template_name, context)
