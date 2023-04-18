@@ -81,7 +81,10 @@ class IngredientInstance(django.db.models.Model):
         help_text='Укажите название ингредиента. Максимум 100 символов',
     )
 
-    quantity = django.db.models.PositiveIntegerField(
+    quantity = django.db.models.FloatField(
+        validators=[
+            django.core.validators.MinValueValidator(0.0)
+        ],
         default=None,
         verbose_name='объём ингредиента',
         help_text='Укажите объём ингредиента',
