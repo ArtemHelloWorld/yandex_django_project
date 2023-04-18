@@ -16,7 +16,7 @@ def search_dishes_by_ingredients(user_ingredients):
                 necessary_ingredients, user_ingredients
             ),
         }
-    return _sort_dishes_dict(dishes_dict)
+    return _get_to_buy_dict(dishes_dict)
 
 
 def _get_missing_ingredients(necessary_ingredients, user_ingredients):
@@ -27,14 +27,14 @@ def _get_missing_ingredients(necessary_ingredients, user_ingredients):
     ]
 
 
-def _sort_dishes_dict(dishes_dict):
+def _get_to_buy_dict(dishes_dict):
     dishes_dict = dict(
         sorted(
             dishes_dict.items(), key=lambda x: len(x[1]['missing_ingredients'])
         )
     )
-    
-    dishes_to_buy_dict = {}
+
+    to_buy_dict = {}
 
     for dish, ingredients in dishes_dict.items():
         len_missing = len(ingredients['missing_ingredients'])
@@ -43,6 +43,6 @@ def _sort_dishes_dict(dishes_dict):
         persentage_of_missing_products = len_missing / len_necessary
 
         if len_missing <= 3 and persentage_of_missing_products <= 0.5:
-            dishes_to_buy_dict[dish] = ingredients['missing_ingredients']
+            to_buy_dict[dish] = ingredients['missing_ingredients']
 
-    return dishes_to_buy_dict
+    return to_buy_dict
