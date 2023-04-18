@@ -26,7 +26,7 @@ class NewDishForm(
         widgets = {
             dishes.models.Dish.cooking_time.field.name: (
                 dishes.widgets.DurationWidget()
-                )
+            )
         }
 
 

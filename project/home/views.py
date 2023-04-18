@@ -9,4 +9,4 @@ class HomeView(django.views.generic.ListView):
     context_object_name = 'dishes'
 
     def get_queryset(self):
-        return dishes.models.Dish.objects.active()
+        return dishes.models.Dish.objects.on_home_page()
