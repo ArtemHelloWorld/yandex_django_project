@@ -1,5 +1,5 @@
-import django.forms
 import django.core.exceptions
+import django.forms
 
 import core.forms
 import dishes.models
@@ -24,9 +24,10 @@ class NewDishForm(
         )
 
         widgets = {
-            dishes.models.Dish.cooking_time.field.name: dishes.widgets.DurationWidget()
-            }
-
+            dishes.models.Dish.cooking_time.field.name: (
+                dishes.widgets.DurationWidget()
+                )
+        }
 
 
 class NewIngredientForm(
@@ -52,6 +53,7 @@ class IngredientForm(
             dishes.models.IngredientInstance.quantity_type.field.name,
         )
 
+
 class IngredientInlineFormSet(django.forms.BaseInlineFormSet):
     def clean(self):
         if any(self.errors):
@@ -60,7 +62,9 @@ class IngredientInlineFormSet(django.forms.BaseInlineFormSet):
         for form in self.forms:
             ingredient = form.cleaned_data.get('ingredient')
             if ingredient in ingredients:
-                raise django.core.exceptions.ValidationError('Ингредиенты в списке не должны повторяться')
+                raise django.core.exceptions.ValidationError(
+                    'Ингредиенты в списке не должны повторяться'
+                )
             ingredients.append(ingredient)
 
 

@@ -26,16 +26,12 @@ class IntegerRangeField(django.db.models.IntegerField):
         return super(IntegerRangeField, self).formfield(**defaults)
 
 
-
-
-
-
 class UniqueNameFieldMixin(django.db.models.Model):
     name = django.db.models.CharField(
         max_length=100,
         verbose_name='название',
         help_text='Укажите название. Максимум 100 символов',
-        unique=True
+        unique=True,
     )
 
     class Meta:
