@@ -110,6 +110,17 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+LANGUAGES = [
+    ("ru", "Russian"),
+    ("en", "English"),
+]
+
+TZ_DETECT_COUNTRIES = ("RU", "US", "JP")
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+]
+
 USE_L10N = True
 
 USE_TZ = True
@@ -149,6 +160,7 @@ ACTIVATE_USERS = (
 
 MAX_FAILED_LOGIN_ATTEMPTS = int(os.getenv('MAX_FAILED_LOGIN_ATTEMPTS', 3))
 
+
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
@@ -179,11 +191,14 @@ TINYMCE_DEFAULT_CONFIG = {
     ),
 }
 
+REQUESTS_PER_SECOND = int(os.getenv("REQUESTS_PER_SECOND", 10))
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / 'send_mail'
-DEFAULT_FROM_EMAIL = os.getenv('EMAIL_TO_SEND_MESSAGES')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == 'True'
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL') == 'True'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS').lower() == 'true'
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL').lower() == 'true'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
