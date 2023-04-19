@@ -46,7 +46,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'project.middleware.custom.RateLimitMiddleware',
 ]
+
+RATE_LIMIT_MIDDLEWARE = os.getenv(
+    'RATE_LIMIT_MIDDLEWARE', 'False'
+).lower() in (
+    'active',
+    'true',
+    '1',
+)
 
 ROOT_URLCONF = 'project.urls'
 
