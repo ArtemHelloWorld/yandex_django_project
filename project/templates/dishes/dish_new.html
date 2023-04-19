@@ -23,7 +23,7 @@
     <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
 
-      {{ form.non_field_errors }}
+      {{ new_dish_form.non_field_errors }}
       {% for field in new_dish_form %}
         <div class="form-outline form-white mb-4">
           {% for error in field.errors %}
