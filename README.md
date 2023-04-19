@@ -11,17 +11,17 @@
 
 <h2>КАК ЗАПУСТИТЬ</h2>
 
-1. Установите основные зависимости(смотреть ниже)  <br>
+1. <h4>Установите основные зависимости(смотреть ниже) </h4>
 
-<h4>Основные | Django & transliterate & dotenv</h4>
+<h5>Основные | Django & transliterate & dotenv</h5>
 <pre><code>pip install -r requirements-prod.txt</code></pre>
 
-<h4>Дополнительные</h4>
-Для разработки | toolbar & black & flake8 & isort &  <pre><code>pip install -r requirements-dev.txt</code></pre>
+<h5>Дополнительные</h5>
+Для разработки | toolbar & black & flake8 & isort <pre><code>pip install -r requirements-dev.txt</code></pre>
 Для тестов | freezegun & parameterized<pre><code>pip install -r requirements-test.txt</code></pre>
 
 
-2. Добавьте в корневой каталог файл .env(Пример можно посмотреть в файле .env-example), содержащий поля:
+2. <h4>Добавьте в корневой каталог файл .env(Пример можно посмотреть в файле .env-example), содержащий поля:</h4>
 
 * SECRET_KEY | Используйте надежный ключ, содержащий больше 50 символов
 
@@ -42,7 +42,7 @@
 * REQUESTS_PER_SECOND | Максимальное количество запросов в секунду. Понадобится, если RATE_LIMIT_MIDDLEWARE равен True
 
 
-3. Запустите локальный сервер <pre><code>python project/manage.py runserver</code></pre>
+3. <h4>Запустите локальный сервер </h4><pre><code>python project/manage.py runserver</code></pre>
 
 
 
