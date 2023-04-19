@@ -29,7 +29,7 @@
       <div class="mb-4">
         <strong>{% trans "Ингредиенты:" %} </strong>
         {% for ingredient in dish.ingredients.all %}
-          <p class="mb-0">{{ ingredient.ingredient.name }} - {{ ingredient.quantity }} {{ ingredient.get_quantity_type_display  }}</p>
+          <p class="mb-0">{{ ingredient.ingredient.name }} - {{ ingredient|ingredient_quantity_format }}</p>
         {% endfor %}
       </div>
 

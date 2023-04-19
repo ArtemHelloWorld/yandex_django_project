@@ -1,0 +1,23 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$d8apOyAWZ76i8l38BNHy2f$Tw1NYm0uDocfYKFgMf+HtRHGWWapRrLNzWt8K88Y0Uo=",
+    "last_login": "2023-04-18T07:48:04.455Z",
+    "is_superuser": true,
+    "username": "mbugr",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-04-18T07:09:24.255Z",
+    "image": "",
+    "birthday": null,
+    "identity_confirmed": false,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

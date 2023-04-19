@@ -1,0 +1,36 @@
+[
+{
+  "model": "feedback.feedback",
+  "pk": 1,
+  "fields": {
+    "text": "все отлично!",
+    "personal_information": 1,
+    "status": "received",
+    "created_on": "2023-04-19T17:39:26.568Z"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 2,
+  "fields": {
+    "text": "Прошу добавить рецепт моего любимого супа - молочного, буду очень благодарен!!!\r\nВ остальном сервис находится на высшем уровне!",
+    "personal_information": 2,
+    "status": "received",
+    "created_on": "2023-04-19T17:41:05.766Z"
+  }
+},
+{
+  "model": "feedback.personalinformation",
+  "pk": 1,
+  "fields": {
+    "mail": "a@mail.ru"
+  }
+},
+{
+  "model": "feedback.personalinformation",
+  "pk": 2,
+  "fields": {
+    "mail": "vasya@yandex.ru"
+  }
+}
+]

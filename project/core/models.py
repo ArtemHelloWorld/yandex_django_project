@@ -1,4 +1,5 @@
 import re
+
 import django.db.models
 import transliterate
 
@@ -54,4 +55,3 @@ class NormalizedNameFieldMixin(django.db.models.Model):
 
     class Meta:
         abstract = True
-

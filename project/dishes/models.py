@@ -33,6 +33,7 @@ class Ingredient(
     class Meta:
         verbose_name = 'ингредиент'
         verbose_name_plural = 'ингредиенты'
+        ordering = ('name', 'pk')
 
     def __str__(self):
         return self.name
@@ -56,6 +57,8 @@ class IngredientInstance(django.db.models.Model):
     MILLILITERS = 'milliliters'
     TABLE_SPOON = 'table spoon'
     TEA_SPOON = 'tea spoon'
+    PIECE = 'piece'
+    PINCH = 'pinch'
 
     VOLUME_TYPE_CHOICES = [
         (KILOGRAMS, 'килограмм'),
@@ -64,6 +67,8 @@ class IngredientInstance(django.db.models.Model):
         (MILLILITERS, 'миллилитр'),
         (TABLE_SPOON, 'столовая ложка'),
         (TEA_SPOON, 'чайная ложка'),
+        (PIECE, 'штука'),
+        (PINCH, 'щепотка'),
     ]
     dish = django.db.models.ForeignKey(
         'Dish',
@@ -77,7 +82,8 @@ class IngredientInstance(django.db.models.Model):
         help_text='Укажите название ингредиента. Максимум 100 символов',
     )
 
-    quantity = django.db.models.PositiveIntegerField(
+    quantity = django.db.models.FloatField(
+        validators=[django.core.validators.MinValueValidator(0.0)],
         default=None,
         verbose_name='объём ингредиента',
         help_text='Укажите объём ингредиента',
