@@ -2,9 +2,7 @@
 
 {% load i18n %}
 
-{% block title %}
-  {% trans "Оставить фидбек" %}
-{% endblock %}
+{% block title %}{% trans "Оставить фидбек" %}{% endblock %}
 
 
 {% block content %}
@@ -12,7 +10,7 @@
   <div class=" mt-md-4">
 
     <h1 class="fw-bold mb-2">{% trans "Оставить фидбек" %}</h1>
-    <p class="text-white-50 mb-5">Здесь вы можете написать всё, что угодно</p>
+    <p class="text-white-50 mb-5">{% trans "Напишите всё, что хотите нам сказать" %}</p>
 
     {% if messages %}
       {% for message in messages %}

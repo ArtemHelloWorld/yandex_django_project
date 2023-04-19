@@ -1,0 +1,257 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-19 20:48+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\dishes\dish_detail.html:20
+msgid "Тип:"
+msgstr "Type"
+
+#: .\templates\dishes\dish_detail.html:20
+#: .\templates\includes\dish_card.html:15
+msgid "Время готовки"
+msgstr "Cooking time"
+
+#: .\templates\dishes\dish_detail.html:20
+msgid "Сложность:"
+msgstr "Complexity:"
+
+#: .\templates\dishes\dish_detail.html:22
+msgid "Тэги:"
+msgstr "Tags:"
+
+#: .\templates\dishes\dish_detail.html:30
+msgid "Ингредиенты:"
+msgstr "Ingredients:"
+
+#: .\templates\dishes\dish_detail.html:37
+msgid "Рецепт:"
+msgstr "Recipe:"
+
+#: .\templates\dishes\dish_detail.html:41
+#: .\templates\includes\dish_card.html:16
+msgid "Автор"
+msgstr "Author"
+
+#: .\templates\dishes\dish_new.html:6 .\templates\dishes\ingredient_new.html:6
+msgid "Новое блюдо"
+msgstr "New dish"
+
+#: .\templates\dishes\dish_new.html:37
+msgid "Добавьте список ингредиентов"
+msgstr "Add a list of ingredients"
+
+#: .\templates\dishes\dish_new.html:49
+msgid "Моего ингредиента нет в списке"
+msgstr "My ingredient is not listed"
+
+#: .\templates\dishes\dish_new.html:50
+msgid "Добавить ещё один ингредиент"
+msgstr "Add one more ingredient"
+
+#: .\templates\dishes\dish_new.html:54
+msgid "Отправить блюдо на модерацию"
+msgstr "Submit a dish for moderation"
+
+#: .\templates\dishes\dishes_search.html:6
+msgid "Поиск блюда"
+msgstr "Search for a dish"
+
+#: .\templates\dishes\dishes_search.html:21
+msgid "Выберите что есть у вас в холодильнике"
+msgstr "Choose what's in your fridge"
+
+#: .\templates\dishes\dishes_search.html:33
+msgid "Добавить ингредиент"
+msgstr "Add Ingredient"
+
+#: .\templates\dishes\dishes_search.html:37 .\templates\includes\header.html:16
+msgid "Найти блюдо"
+msgstr "Find a dish"
+
+#: .\templates\dishes\dishes_search.html:41
+msgid "Вы можете приготовить"
+msgstr "You can cook"
+
+#: .\templates\dishes\dishes_search.html:45
+msgid "Вам нужно докупить:"
+msgstr "You need to purchase:"
+
+#: .\templates\dishes\dishes_search.html:47
+msgid "У вас есть все продукты. Начинаем готовить!"
+msgstr "You have all products. Let's start cooking!"
+
+#: .\templates\dishes\ingredient_new.html:35
+#: .\templates\feedback\feedback.html:23
+msgid "Отправить"
+msgstr "Send"
+
+#: .\templates\feedback\feedback.html:5 .\templates\feedback\feedback.html:12
+#: .\templates\includes\header.html:20
+msgid "Оставить фидбек"
+msgstr "Leave feedback"
+
+#: .\templates\feedback\feedback.html:13
+msgid "Напишите всё, что хотите нам сказать"
+msgstr "Write whatever you want to tell us"
+
+#: .\templates\home\home.html:6
+msgid "Главная"
+msgstr "Home"
+
+#: .\templates\includes\dish_card.html:14
+msgid "Сложность"
+msgstr "Complexity"
+
+#: .\templates\includes\dish_card.html:21
+msgid "Готовить!"
+msgstr "To cook!"
+
+#: .\templates\includes\header.html:15
+#: .\templates\users\password_change\password_change_done.html:9
+msgid "На главную"
+msgstr "To home"
+
+#: .\templates\includes\header.html:18
+msgid "Добавить блюдо"
+msgstr "Add new dish"
+
+#: .\templates\includes\header.html:27
+msgid "Панель администратора"
+msgstr "Admin panel"
+
+#: .\templates\includes\header.html:29
+msgid "Выйти"
+msgstr "Logout"
+
+#: .\templates\includes\header.html:30 .\templates\users\profile\profile.html:7
+#: .\templates\users\profile\profile.html:12
+msgid "Мой профиль"
+msgstr "My profile"
+
+#: .\templates\includes\header.html:32 .\templates\users\login\login.html:15
+#: .\templates\users\password_reset\password_reset_complete.html:9
+#: .\templates\users\password_reset\password_reset_done.html:9
+#: .\templates\users\signup\activation_done.html:11
+#: .\templates\users\signup\signup.html:21
+#: .\templates\users\signup\signup_complete.html:12
+msgid "Войти"
+msgstr "Login"
+
+#: .\templates\includes\header.html:33 .\templates\users\signup\signup.html:15
+msgid "Зарегистрироваться"
+msgstr "Signup"
+
+#: .\templates\users\login\login.html:5 .\templates\users\login\login.html:12
+msgid "Вход"
+msgstr "Login"
+
+#: .\templates\users\login\login.html:13
+#: .\templates\users\password_change\password_change.html:11
+#: .\templates\users\password_reset\password_reset_confirm.html:11
+msgid "Введите свой логин и пароль"
+msgstr "Enter your username and password"
+
+#: .\templates\users\login\login.html:21
+#: .\templates\users\password_change\password_change.html:19
+msgid "Забыли пароль?"
+msgstr "Forgot your password?"
+
+#: .\templates\users\login\login.html:22
+msgid "Ещё нет аккаунта?"
+msgstr "Don't have an account yet?"
+
+#: .\templates\users\login\login.html:22 .\templates\users\signup\signup.html:6
+#: .\templates\users\signup\signup.html:12
+#: .\templates\users\signup\signup_complete.html:6
+msgid "Регистрация"
+msgstr "Registration"
+
+#: .\templates\users\password_change\password_change.html:5
+#: .\templates\users\password_change\password_change.html:10
+#: .\templates\users\password_change\password_change_done.html:5
+msgid "Смена пароля"
+msgstr "Change Password"
+
+#: .\templates\users\password_change\password_change.html:13
+#: .\templates\users\profile\profile.html:26
+msgid "Изменить пароль"
+msgstr "Change password"
+
+#: .\templates\users\password_change\password_change_done.html:8
+msgid "Вы успешно изменили пароль"
+msgstr "You have successfully changed your password"
+
+#: .\templates\users\password_reset\password_reset.html:5
+#: .\templates\users\password_reset\password_reset.html:10
+#: .\templates\users\password_reset\password_reset_complete.html:5
+#: .\templates\users\password_reset\password_reset_confirm.html:5
+#: .\templates\users\password_reset\password_reset_confirm.html:10
+#: .\templates\users\password_reset\password_reset_done.html:5
+msgid "Восстановление пароля"
+msgstr "Password recovery"
+
+#: .\templates\users\password_reset\password_reset.html:11
+msgid "Введите свою почту"
+msgstr "Enter your email"
+
+#: .\templates\users\password_reset\password_reset.html:13
+msgid "Восстановить пароль"
+msgstr "Restore password"
+
+#: .\templates\users\password_reset\password_reset.html:19
+msgid "Я вспомнил пароль"
+msgstr "I remembered the password"
+
+#: .\templates\users\password_reset\password_reset_complete.html:8
+msgid "Вы успешно восстановили пароль"
+msgstr "You have successfully recovered your password"
+
+#: .\templates\users\password_reset\password_reset_confirm.html:13
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\templates\users\password_reset\password_reset_done.html:8
+msgid "Мы отправили вам инструкцию по установке нового пароля"
+msgstr "We have sent you instructions on how to set a new password"
+
+#: .\templates\users\profile\profile.html:27
+msgid "Сохранить изменения"
+msgstr "Save changes"
+
+#: .\templates\users\signup\activation_done.html:6
+msgid "Активация"
+msgstr "Activation"
+
+#: .\templates\users\signup\signup.html:13
+msgid "Придумайте логин и уникальный пароль"
+msgstr "create a username and a unique password"
+
+#: .\templates\users\signup\signup_complete.html:10
+msgid "A link has been sent to your email to complete your registration."
+msgstr ""
+
+#: .\templates\users\signup\signup_complete.html:11
+msgid "Ссылка действует 12 часов"
+msgstr "Link valid for 12 hours"
+
+#~ msgid "Логин"
+#~ msgstr "Login"
+
+#~ msgid "Пользователи"
+#~ msgstr "Users"

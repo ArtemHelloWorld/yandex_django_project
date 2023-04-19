@@ -34,7 +34,7 @@
       {% endfor %}
 
       <div class="form-outline form-white mb-4">
-        Добавьте список ингредиентов
+        {% trans "Добавьте список ингредиентов" %}
 
         {{ ingredient_formset.management_form }}
         <div class="table row">
@@ -46,11 +46,12 @@
                 {% endfor %}
           {% endfor %}
         </div>
-        <p><a href="{% url 'dishes:new_ingredient' %}">Моего ингредиента нет в списке</a></p>
-        <input type="button" value="Добавить ингредиент" id="add_more" class="btn btn-outline-dark me-2">
+        <p><a href="{% url 'dishes:new_ingredient' %}">{% trans "Моего ингредиента нет в списке" %}</a></p>
+        {% trans "Добавить ещё один ингредиент" as btn_text %}
+        <input type="button" value="{{ btn_text }}" id="add_more" class="btn btn-outline-dark me-2">
       </div>
 
-      <button class="btn btn-primary px-5 mb-5" type="submit">{% trans "Отправить" %}</button>
+      <button class="btn btn-primary px-5 mb-5" type="submit">{% trans "Отправить блюдо на модерацию" %}</button>
 
     </form>
   </div>

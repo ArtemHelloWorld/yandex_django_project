@@ -5,10 +5,10 @@ django-taggit==3.1.0
 django-tinymce4-lite==1.8.0
 Pillow==9.5.0
 python-dotenv==0.21.1
+pymorphy2==0.9.1
+pymorphy2-dicts-ru==2.4.417127.4579844
 pytz==2023.3
 sorl-thumbnail==12.9.0
 sqlparse==0.4.3
 taggit-selectize==2.11.0
 transliterate==1.10.2
-pymorphy2==0.9.1
-pymorphy2-dicts-ru==2.4.417127.4579844
