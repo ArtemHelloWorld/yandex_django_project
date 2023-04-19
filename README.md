@@ -11,14 +11,14 @@
 
 <h2>КАК ЗАПУСТИТЬ</h2>
 
-1. <h4>Установите основные зависимости(смотреть ниже) </h4>
+1. <h4>Установите зависимости</h4>
 
 <h5>Основные | Django & transliterate & dotenv</h5>
-<pre><code>pip install -r requirements-prod.txt</code></pre>
+<pre><code>$ pip install -r requirements/requirements-prod.txt</code></pre>
 
 <h5>Дополнительные</h5>
-Для разработки | toolbar & black & flake8 & isort <pre><code>pip install -r requirements-dev.txt</code></pre>
-Для тестов | freezegun & parameterized<pre><code>pip install -r requirements-test.txt</code></pre>
+Для разработки | toolbar & black & flake8 & isort <pre><code>$ pip install -r requirements/requirements-dev.txt</code></pre>
+Для тестов | freezegun & parameterized<pre><code>$ pip install -r requirements/requirements-test.txt</code></pre>
 
 
 2. <h4>Добавьте в корневой каталог файл .env(Пример можно посмотреть в файле .env-example), содержащий поля:</h4>
@@ -41,19 +41,21 @@
 
 * REQUESTS_PER_SECOND | Максимальное количество запросов в секунду. Понадобится, если RATE_LIMIT_MIDDLEWARE равен True
 
+* EMAIL_HOST; EMAIL_PORT; EMAIL_HOST_USER; EMAIL_HOST_PASSWORD; EMAIL_USE_TLS; EMAIL_USE_SSL | Укажите для отправки электронных писем
 
-3. <h4>Запустите локальный сервер </h4><pre><code>python project/manage.py runserver</code></pre>
+
+3. <h4>Запустите локальный сервер </h4><pre><code>$ python project/manage.py runserver</code></pre>
 
 
 
 <h2>создание базы данных</h2>
-Чтобы создать бд, необходимо выполнить миграции<pre><code>python lyceum/manage.py migrate</code></pre>
-Чтобы добавить тестовые данные, воспользуйтесь фикстурами. Пример с загрузкой данных из приложения catalog: <pre><code>python lyceum/manage.py loaddata lyceum/catalog/fixtures/data.json</code></pre>
+Чтобы создать бд, необходимо выполнить миграции<pre><code>$ python project/manage.py migrate</code></pre>
+Чтобы добавить тестовые данные, воспользуйтесь фикстурами. Пример с загрузкой данных из приложения catalog: <pre><code>$ python project/manage.py loaddata project/dishes/fixtures/fixture.json</code></pre>
 
 
 
 <h2>ИНИЦИАЛИЗАЦИЯ ДАННЫХ</h2>
-После установки необходимых зависимостей вы можете воспользоваться кастомной командой initdata<pre><code>python lyceum/manage.py initdata</code></pre>Эта команды выполнит следующие шаги:
+После установки необходимых зависимостей вы можете воспользоваться кастомной командой initdata<pre><code>$ python project/manage.py initdata</code></pre>Эта команда выполнит следующие шаги:
 
 1. Проверит базу данных на все миграции. --skip-checking-database для отключения
 
