@@ -8,7 +8,7 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 dotenv.load_dotenv()
 
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-w30sdst!pi!e$n00rf4iu@')
 
 
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1')
@@ -206,9 +206,9 @@ TINYMCE_DEFAULT_CONFIG = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / 'send_mail'
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS').lower() == 'true'
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL').lower() == 'true'
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'true').lower() == 'true'
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'true').lower() == 'true'
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.mail.ru')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 2525))
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'your@mail.ru')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'password')
