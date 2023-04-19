@@ -17,13 +17,8 @@ class MyMiddlewareTestCase(django.test.TestCase):
     @django.test.override_settings(RATE_LIMIT_MIDDLEWARE=True)
     @django.test.override_settings(REQUESTS_PER_SECOND=2)
     def test_rate_limit_middleware(self):
-        response = self.client.get(
-            django.shortcuts.reverse('home:home')
-        )
+        response = self.client.get(django.shortcuts.reverse('home:home'))
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(
-            django.shortcuts.reverse('home:home')
-        )
+        response = self.client.get(django.shortcuts.reverse('home:home'))
         self.assertEqual(response.status_code, 429)
-        

@@ -14,7 +14,7 @@ class RateLimitMiddleware:
             return self.get_response(request)
 
         if count >= django.conf.settings.REQUESTS_PER_SECOND:
-            return django.http.HttpResponse("Too many requests", status=429)
+            return django.http.HttpResponse('Too many requests', status=429)
         else:
             django.core.cache.cache.set(key, count + 1, 1)
             return self.get_response(request)
