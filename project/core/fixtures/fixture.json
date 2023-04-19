@@ -1,417 +1,5 @@
 [
 {
-  "model": "users.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$260000$d8apOyAWZ76i8l38BNHy2f$Tw1NYm0uDocfYKFgMf+HtRHGWWapRrLNzWt8K88Y0Uo=",
-    "last_login": "2023-04-18T07:48:04.455Z",
-    "is_superuser": true,
-    "username": "mbugr",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2023-04-18T07:09:24.255Z",
-    "image": "",
-    "birthday": null,
-    "identity_confirmed": false,
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 1,
-  "fields": {
-    "name": "Яйцо",
-    "name_normalized": "jajtso",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 2,
-  "fields": {
-    "name": "Сливочное масло",
-    "name_normalized": "slivochnoemaslo",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 3,
-  "fields": {
-    "name": "Зелёный горошек",
-    "name_normalized": "zelenyjgoroshek",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 4,
-  "fields": {
-    "name": "Капуста квашенная",
-    "name_normalized": "kapustakvashennaja",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 5,
-  "fields": {
-    "name": "Маринованные огурцы",
-    "name_normalized": "marinovannyeogurtsy",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 6,
-  "fields": {
-    "name": "Картошка",
-    "name_normalized": "kartoshka",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 7,
-  "fields": {
-    "name": "Лук",
-    "name_normalized": "luk",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 8,
-  "fields": {
-    "name": "Свекла",
-    "name_normalized": "svekla",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 9,
-  "fields": {
-    "name": "Морковь",
-    "name_normalized": "morkov'",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 10,
-  "fields": {
-    "name": "Укроп",
-    "name_normalized": "ukrop",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 11,
-  "fields": {
-    "name": "Растительное масло",
-    "name_normalized": "rastitel'noemaslo",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 12,
-  "fields": {
-    "name": "Клубника",
-    "name_normalized": "klubnika",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 13,
-  "fields": {
-    "name": "Вода",
-    "name_normalized": "voda",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 14,
-  "fields": {
-    "name": "Сахар",
-    "name_normalized": "sahar",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.ingredient",
-  "pk": 15,
-  "fields": {
-    "name": "Лимонная кислота",
-    "name_normalized": "limonnajakislota",
-    "moderation_status": "verified"
-  }
-},
-{
-  "model": "dishes.dishtype",
-  "pk": 1,
-  "fields": {
-    "name": "Напиток"
-  }
-},
-{
-  "model": "dishes.dishtype",
-  "pk": 2,
-  "fields": {
-    "name": "Салат"
-  }
-},
-{
-  "model": "dishes.dishtype",
-  "pk": 3,
-  "fields": {
-    "name": "Суп"
-  }
-},
-{
-  "model": "dishes.dishtype",
-  "pk": 4,
-  "fields": {
-    "name": "Основное блюдо"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 1,
-  "fields": {
-    "dish": 1,
-    "ingredient": 1,
-    "quantity": 2.0,
-    "quantity_type": "piece"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 2,
-  "fields": {
-    "dish": 1,
-    "ingredient": 2,
-    "quantity": 10.0,
-    "quantity_type": "gram"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 4,
-  "fields": {
-    "dish": 2,
-    "ingredient": 1,
-    "quantity": 2.0,
-    "quantity_type": "piece"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 5,
-  "fields": {
-    "dish": 3,
-    "ingredient": 3,
-    "quantity": 400.0,
-    "quantity_type": "gram"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 6,
-  "fields": {
-    "dish": 3,
-    "ingredient": 4,
-    "quantity": 300.0,
-    "quantity_type": "gram"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 7,
-  "fields": {
-    "dish": 3,
-    "ingredient": 5,
-    "quantity": 3.0,
-    "quantity_type": "piece"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 8,
-  "fields": {
-    "dish": 3,
-    "ingredient": 6,
-    "quantity": 2.0,
-    "quantity_type": "piece"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 9,
-  "fields": {
-    "dish": 3,
-    "ingredient": 7,
-    "quantity": 1.0,
-    "quantity_type": "piece"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 10,
-  "fields": {
-    "dish": 3,
-    "ingredient": 8,
-    "quantity": 2.0,
-    "quantity_type": "piece"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 11,
-  "fields": {
-    "dish": 3,
-    "ingredient": 9,
-    "quantity": 2.0,
-    "quantity_type": "piece"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 12,
-  "fields": {
-    "dish": 3,
-    "ingredient": 10,
-    "quantity": 10.0,
-    "quantity_type": "gram"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 13,
-  "fields": {
-    "dish": 3,
-    "ingredient": 11,
-    "quantity": 4.0,
-    "quantity_type": "table spoon"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 14,
-  "fields": {
-    "dish": 4,
-    "ingredient": 12,
-    "quantity": 700.0,
-    "quantity_type": "gram"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 15,
-  "fields": {
-    "dish": 4,
-    "ingredient": 13,
-    "quantity": 2.3,
-    "quantity_type": "liters"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 16,
-  "fields": {
-    "dish": 4,
-    "ingredient": 14,
-    "quantity": 250.0,
-    "quantity_type": "gram"
-  }
-},
-{
-  "model": "dishes.ingredientinstance",
-  "pk": 17,
-  "fields": {
-    "dish": 4,
-    "ingredient": 15,
-    "quantity": 1.0,
-    "quantity_type": "tea spoon"
-  }
-},
-{
-  "model": "dishes.dish",
-  "pk": 1,
-  "fields": {
-    "author": 1,
-    "name": "Яичница",
-    "image_main": "dish/main/2023/04/18/fried_egg.jpg",
-    "type": 4,
-    "recipe": "<ol>\r\n<li>Яйцо помойте с мылом под струёй тёплой воды. Это необходимо для обеспечения безопасности и защиты от возможного заражения сальмонеллой.</li>\r\n<li>Сковородку с невысокими бортами разогрейте на сильном огне. Добавьте кусочек сливочного масла и растопите его до жидкого состояния. Огонь убавьте до среднего.</li>\r\n<li>Вбейте яйцо в сковороду с раскалённым маслом. Постарайтесь не повредить целостность желтка. Круговыми движениями распределите белок так, чтобы он равномерно растёкся по сковороде.</li>\r\n<li>Жарьте яичницу до такого состояния, пока белок полностью не схватится, а желток ещё будет ярко-жёлтым и жидким. Время приготовления яичницы будет зависеть от множества факторов таких, как: размер сковороды, количество яиц и сила огня. Не стоит накрывать яичницу крышкой, иначе желток станет твёрдым.</li>\r\n<li>После того, как яичница достигла необходимой степени готовности, можно слегка посолить или поперчить её по вкусу.</li>\r\n</ol>",
-    "complexity": 1,
-    "cooking_time": "00:15:00",
-    "moderation_status": "added",
-    "is_on_home_page": true,
-    "date_created": "2023-04-18T08:08:41.795Z",
-    "date_updated": "2023-04-18T15:19:20.496Z"
-  }
-},
-{
-  "model": "dishes.dish",
-  "pk": 2,
-  "fields": {
-    "author": 1,
-    "name": "Обычный завтрак Данилы",
-    "image_main": "dish/main/2023/04/18/Danilas_breakfast_1.jpg",
-    "type": 4,
-    "recipe": "<ol>\r\n<li>Поменяйте имя и фамилию на Данила Ерёмин</li>\r\n<li>Обучитесь джанге</li>\r\n<li>Поступите на работу в гугл</li>\r\n<li>Совершите переезд в Мюнхен, Германия</li>\r\n<li>На завтрак придите в столовую данной компании</li>\r\n</ol>",
-    "complexity": 5,
-    "cooking_time": "23:59:00",
-    "moderation_status": "added",
-    "is_on_home_page": true,
-    "date_created": "2023-04-18T09:27:13.051Z",
-    "date_updated": "2023-04-18T15:19:20.474Z"
-  }
-},
-{
-  "model": "dishes.dish",
-  "pk": 3,
-  "fields": {
-    "author": 1,
-    "name": "Винегрет",
-    "image_main": "dish/main/2023/04/18/vinaigrette.jpg",
-    "type": 2,
-    "recipe": "<ol>\r\n<li>Картофель, свеклу и морковь вымойте, выложите в кастрюлю, залейте водой и отварите в кожуре до готовности. Затем воду слейте, а овощи охладите. С квашеной капусты слейте рассол, капусту слегка отожмите, иначе салат получится водянистым, а на дне скопится много сока от капусты.</li>\r\n<li>\r\n<p class=\"instruction\">Вареную морковь, маринованные огурцы, варенную свеклу и картофель нарежьте небольшими кубиками.</p>\r\n</li>\r\n<li>\r\n<p class=\"instruction\">Лук очистите, помойте и нарежьте мелким кубиком.</p>\r\n</li>\r\n<li>Консервированный горошек откиньте на сито и обсушите.</li>\r\n<li>\r\n<p class=\"instruction\">Зелень вымойте, обсушите и мелко порубите.</p>\r\n</li>\r\n<li>Переложите нарезанные овощи в салатник, добавьте квашеную капусту и консервированный горошек.</li>\r\n<li>Слегка перемешайте ингредиенты. Посыпьте салат измельченной зеленью, полейте растительным маслом - сюда больше подойдет нерафинированное душистое подсолнечное. Посолите по вкусу и хорошо перемешайте.</li>\r\n<li>Подавать салат можете прямо в салатнике, а можете придать ему более нарядный вид и выложить готовый салат в кулинарное кольцо. Перед подачей кулинарное кольцо снимите и подайте салат к столу. Приятного аппетита!</li>\r\n</ol>",
-    "complexity": 3,
-    "cooking_time": "01:00:00",
-    "moderation_status": "added",
-    "is_on_home_page": true,
-    "date_created": "2023-04-18T10:08:11.075Z",
-    "date_updated": "2023-04-18T15:19:20.433Z"
-  }
-},
-{
-  "model": "dishes.dish",
-  "pk": 4,
-  "fields": {
-    "author": 1,
-    "name": "Клубничный компот",
-    "image_main": "dish/main/2023/04/18/strawberry_compote.jpg",
-    "type": 1,
-    "recipe": "<ol>\r\n<li>Для начала подготовьте клубнику. Ягоды отбирайте самые красивые, спелые и ароматные, лучше мелкие. Недозрелые, подпорченные и помятые ягоды не годятся для консервирования. Клубнику промойте в тазике с водой небольшими порциями, осторожно пару раз перемешивая её руками. Ещё раз промойте ягоды в чистой воде и аккуратно переложите их в широкую ёмкость, чтобы напитавшиеся водой ягоды не помялись.</li>\r\n<li>Подготовьте все остальные ингредиенты. Лимонную кислоту можно заменить на столовую ложку лимонного сока. Аккуратно удалите у ягод клубники плодоножки. Они легко отрываются руками.</li>\r\n<li>Подготовьте банки для консервации. Можно взять стеклянные банки любой величины. Обязательно помойте банки с пищевой содой. Затем прогрейте их либо над паром, либо в духовке на решётке горлышком вниз в течение 7-10 минут при 180 градусах. Ставьте банки в ещё неразогретую духовку, иначе от резкого перепада температуры они могут треснуть. Крышки также нужно прокипятить в течение 5 минут и остудить.</li>\r\n<li>Положите в стерильную банку подготовленную клубнику так, чтобы она заняла примерно 1/4 объема банки. Для получения более насыщенного компота заполняйте банки на треть.</li>\r\n<li>Насыпьте в банку с ягодами сахар и лимонную кислоту.</li>\r\n<li>Вскипятите чистую воду. Кипящую воду залейте в банку с клубникой. Старайтесь лить воду в центр, чтобы стекло не лопнуло от перепада температуры. Когда жидкость достигнет плечиков, закройте банки крышками при помощи закаточной машинки. Затем аккуратно несколько раз переверните банку, чтобы растворился весь сахар. Заодно так можно проверить герметичность закатки. Благодаря лимонной кислоте клубника начнёт окрашивать компот в яркий цвет.</li>\r\n<li>Поставьте банку с клубничным компотом вверх дном, укутайте пледом или одеялом и оставьте так до полного остывания. Приятного аппетита!</li>\r\n</ol>",
-    "complexity": 2,
-    "cooking_time": "00:30:00",
-    "moderation_status": "added",
-    "is_on_home_page": true,
-    "date_created": "2023-04-18T10:35:36.973Z",
-    "date_updated": "2023-04-18T15:19:20.391Z"
-  }
-},
-{
   "model": "admin.logentry",
   "pk": 1,
   "fields": {
@@ -812,6 +400,19 @@
     "object_repr": "Яйцо",
     "action_flag": 2,
     "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0442\\u0430\\u0442\\u0443\\u0441 \\u043c\\u043e\\u0434\\u0435\\u0440\\u0430\\u0446\\u0438\\u0438\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2023-04-19T14:58:02.737Z",
+    "user": 1,
+    "content_type": 2,
+    "object_id": "2",
+    "object_repr": "Обычный завтрак Данилы",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0413\\u043b\\u0430\\u0432\\u043d\\u043e\\u0435 \\u0444\\u043e\\u0442\\u043e\"]}}]"
   }
 },
 {
@@ -1358,8 +959,8 @@
   "model": "sessions.session",
   "pk": "z92jee9gp8fwm1h7tedh8x7di6pk8cbw",
   "fields": {
-    "session_data": ".eJxVjL0OwjAQg98lM1T5IyHdWomZiTm6Sy5qBe3QpAMg3p1U6lJ5sj_bXxapUCgUffmw9qw4PzEPaxn8mmnxY2QtE-yQIYQnzRvYbG52n5uuVvr3bYLxdV8elc0wUb-3DxcD5KHutUootLLWOkCXJOeCtJOJ7BWMCbIKLzERd4QaJVjlgk7CWNRcC4Ps9wfHNj7N:1pon75:TnIwd1FSqVPO6moGwqJGnkEDSmzGcfrhDPP6Kl7k1OI",
-    "expire_date": "2023-05-02T15:19:23.317Z"
+    "session_data": ".eJxVjL0OwjAQg98lM1T5IyHdWomZiTm6Sy5qBe3QpAMg3p1U6lJ5sj_bXxapUCgUffmw9qw4PzEPaxn8mmnxY2QtE-yQIYQnzRvYbG52n5uuVvr3bYLxdV8elc0wUb-3DxcD5KHutUootLLWOkCXJOeCtJOJ7BWMCbIKLzERd4QaJVjlgk7CWNRcC4Ps9wfHNj7N:1pp9G1:NMFx-KaXWUjrwui7NxhKW8-SkHwncbMK4sNCjCigAyU",
+    "expire_date": "2023-05-03T14:58:05.636Z"
   }
 },
 {
@@ -1367,6 +968,20 @@
   "pk": "sorl-thumbnail||image||009a7ee739b6ed098d1d7fead5304e04",
   "fields": {
     "value": "{\"name\": \"dish/main/2023/04/18/Danilas_breakfast_1.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1282, 962]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||17c1f4ac4f85929eec49a879fdd789ca",
+  "fields": {
+    "value": "{\"name\": \"cache/f7/b9/f7b93019c06d6348047688be56e90296.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 500]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||1b0ee23bd6c01be527324fd23647ba40",
+  "fields": {
+    "value": "{\"name\": \"dish/main/2023/04/19/Danilas_breakfast.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [1282, 962]}"
   }
 },
 {
@@ -1472,6 +1087,13 @@
   "pk": "sorl-thumbnail||thumbnails||009a7ee739b6ed098d1d7fead5304e04",
   "fields": {
     "value": "[\"7d9983d1191756377901fd43e35b2896\", \"7a31b15acc3b420f6b044351c8a906e6\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||1b0ee23bd6c01be527324fd23647ba40",
+  "fields": {
+    "value": "[\"17c1f4ac4f85929eec49a879fdd789ca\"]"
   }
 },
 {
