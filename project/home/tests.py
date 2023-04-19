@@ -1,4 +1,5 @@
 import datetime
+
 import django.forms.models
 import django.test
 import django.urls
@@ -17,8 +18,7 @@ class HomepageTests(django.test.TestCase):
         super().setUpClass()
 
         cls.user = users.models.User.objects.create(
-            username='тестовый пользователь',
-            password='123'
+            username='тестовый пользователь', password='123'
         )
         cls.user.save()
 
@@ -30,7 +30,7 @@ class HomepageTests(django.test.TestCase):
             name='тестовое блюдо',
             image_main='dish/main/2023/04/18/test_image.jpg',
             type=cls.dish_type,
-            recipe='Рецепт'*50,
+            recipe='Рецепт' * 50,
             complexity=1,
             cooking_time=datetime.timedelta(minutes=15),
             moderation_status='added',
@@ -42,7 +42,7 @@ class HomepageTests(django.test.TestCase):
             name='тестовое блюдо не на главной странице',
             image_main='dish/main/2023/04/18/test_image1.jpg',
             type=cls.dish_type,
-            recipe='Рецепт'*50,
+            recipe='Рецепт' * 50,
             complexity=1,
             cooking_time=datetime.timedelta(minutes=15),
             moderation_status='added',
@@ -55,7 +55,6 @@ class HomepageTests(django.test.TestCase):
         cls.dishe_unpublished.clean()
         cls.dishe_unpublished.save()
 
-
     def test_homepage_context(self):
         response = self.client.get(django.urls.reverse('home:home'))
         self.assertIn('dishes', response.context)
@@ -64,5 +63,3 @@ class HomepageTests(django.test.TestCase):
         response = self.client.get(django.urls.reverse('home:home'))
         items = response.context['dishes']
         self.assertEqual(len(items), 1)
-
-    

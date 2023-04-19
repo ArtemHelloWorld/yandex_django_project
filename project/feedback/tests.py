@@ -5,6 +5,7 @@ import django.urls
 import feedback.forms
 import feedback.models
 
+
 @django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class FeedbackFormTests(django.test.TestCase):
     def setUp(self):
