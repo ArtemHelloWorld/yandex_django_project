@@ -1,3 +1,4 @@
+import django.core.exceptions
 import django.forms
 
 import core.forms
@@ -21,7 +22,12 @@ class NewDishForm(
             dishes.models.Dish.complexity.field.name,
             dishes.models.Dish.cooking_time.field.name,
         )
-        widgets = {'cooking_time': dishes.widgets.DurationWidget()}
+
+        widgets = {
+            dishes.models.Dish.cooking_time.field.name: (
+                dishes.widgets.DurationWidget()
+            )
+        }
 
 
 class NewIngredientForm(
@@ -48,10 +54,25 @@ class IngredientForm(
         )
 
 
+class IngredientInlineFormSet(django.forms.BaseInlineFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+        ingredients = []
+        for form in self.forms:
+            ingredient = form.cleaned_data.get('ingredient')
+            if ingredient in ingredients:
+                raise django.core.exceptions.ValidationError(
+                    'Ингредиенты в списке не должны повторяться'
+                )
+            ingredients.append(ingredient)
+
+
 IngredientFormSet = django.forms.inlineformset_factory(
     dishes.models.Dish,
     dishes.models.IngredientInstance,
     form=IngredientForm,
+    formset=IngredientInlineFormSet,
     extra=1,
     can_delete=False,
 )
@@ -61,14 +82,6 @@ class DishesSearchForm(
     core.forms.BootstrapSelectClassFormMixin,
     django.forms.Form,
 ):
-    ingredient = django.forms.ModelChoiceField(
+    ingredient = django.forms.ModelMultipleChoiceField(
         queryset=dishes.models.Ingredient.objects.all(),
-        empty_label='выберите ингредиент',
     )
-
-
-DishesSearchFormSet = django.forms.formset_factory(
-    form=DishesSearchForm,
-    extra=1,
-    can_delete=False,
-)

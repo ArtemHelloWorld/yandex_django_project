@@ -5,6 +5,7 @@ import django.views.generic
 
 import dishes.forms
 import dishes.models
+import dishes.services
 
 
 class NewDishView(
@@ -71,52 +72,30 @@ class DishSearchView(django.views.generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        dishes_search_formset = dishes.forms.DishesSearchFormSet()
-
-        context['dishes_search_formset'] = dishes_search_formset
+        dishes_search_form = dishes.forms.DishesSearchForm()
+        context['dishes_search_form'] = dishes_search_form
 
         return context
 
     def post(self, request):
-        dishes_search_formset = dishes.forms.DishesSearchFormSet(request.POST)
-        if dishes_search_formset.is_valid():
-            ingredients = dishes_search_formset.cleaned_data
-            ingredients_list = [
-                ingredient.get('ingredient') for ingredient in ingredients
-            ]
+        dishes_search_form = dishes.forms.DishesSearchForm(request.POST)
 
-            ingredient_instance = (
-                dishes.models.IngredientInstance.objects.filter(
-                    ingredient__in=ingredients_list
-                )
+        context = {
+            'dishes_search_form': dishes_search_form,
+        }
+
+        if dishes_search_form.is_valid():
+            user_ingredients = dishes_search_form.cleaned_data.get(
+                'ingredient'
             )
 
-            dishes_dict = {}
-            for i in ingredient_instance:
-                if i.dish in dishes_dict:
-                    dishes_dict[i.dish].append(i)
-                else:
-                    dishes_dict[i.dish] = [i]
-
-            dishes_dict = dict(
-                sorted(dishes_dict.items(), key=lambda x: len(x[1]))
+            dishes_dict = dishes.services.search_dishes_by_ingredients(
+                user_ingredients
             )
 
-            dishes_to_buy = {}
-            for dish, ingredients in dishes_dict.items():
-                dishes_to_buy[dish] = [
-                    item
-                    for item in dish.ingredients.all()
-                    if item not in ingredients
-                ]
+            if len(dishes_dict):
+                context['dishes_dict'] = dishes_dict
+            else:
+                context['message'] = 'По вашему запросу ничего не найдено'
 
-            return django.shortcuts.render(
-                request,
-                self.template_name,
-                {
-                    'dishes_search_formset': (
-                        dishes.forms.DishesSearchFormSet()
-                    ),
-                    'dishes_dict': dishes_to_buy,
-                },
-            )
+        return django.shortcuts.render(request, self.template_name, context)

@@ -12,6 +12,7 @@ import users.models
 import users.services
 
 
+@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class SignUpTests(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
@@ -194,6 +195,7 @@ class SignUpTests(django.test.TestCase):
             )
 
 
+@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class LoginTests(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
@@ -287,6 +289,7 @@ class LoginTests(django.test.TestCase):
         self.assertFalse(response.context['user'].is_authenticated)
 
 
+@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class EmailFieldNormalizationTest(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
@@ -375,6 +378,7 @@ class EmailFieldNormalizationTest(django.test.TestCase):
         self.assertFalse(response.context['user'].is_authenticated)
 
 
+@django.test.override_settings(RATE_LIMIT_MIDDLEWARE=False)
 class ReactivationClass(django.test.TestCase):
     def setUp(self):
         self.client = django.test.Client()
