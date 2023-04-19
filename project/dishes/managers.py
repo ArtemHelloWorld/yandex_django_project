@@ -15,14 +15,27 @@ class DishManager(django.db.models.Manager):
         )
 
     def on_home_page(self):
-        return self.get_queryset().filter(
-            django.db.models.Q(is_on_home_page=True)
-            & django.db.models.Q(moderation_status=dishes.models.Dish.ADDED)
+        return (
+            self.get_queryset()
+            .filter(
+                django.db.models.Q(is_on_home_page=True)
+                & django.db.models.Q(
+                    moderation_status=dishes.models.Dish.ADDED
+                )
+            )
+            .only(
+                'author__username',
+                'author__identity_confirmed',
+                'name',
+                'type',
+                'image_main',
+                'cooking_time',
+            )
         )
 
     def active(self):
         return self.get_queryset().filter(
-            django.db.models.Q(moderation_status=dishes.models.Dish.ADDED)
+            moderation_status=dishes.models.Dish.ADDED
         )
 
 

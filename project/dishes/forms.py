@@ -82,14 +82,6 @@ class DishesSearchForm(
     core.forms.BootstrapSelectClassFormMixin,
     django.forms.Form,
 ):
-    ingredient = django.forms.ModelChoiceField(
+    ingredient = django.forms.ModelMultipleChoiceField(
         queryset=dishes.models.Ingredient.objects.all(),
-        empty_label='выберите ингредиент',
     )
-
-
-DishesSearchFormSet = django.forms.formset_factory(
-    form=DishesSearchForm,
-    extra=1,
-    can_delete=False,
-)

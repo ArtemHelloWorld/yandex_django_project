@@ -20,18 +20,16 @@
       <div class="form-outline form-white mb-4">
         <h1>{% trans "Выберите что есть у вас в холодильнике" %}</h1>
 
-        {{ dishes_search_formset.management_form }}
-        <div class="table row">
-          {% for form in dishes_search_formset.forms %}
-                {% for field in form %}
-                  <div class='col-md-4'>
-                    {{ field }}
-                  </div>
-                {% endfor %}
-          {% endfor %}
-        </div>
-
-        <input type="button" value="Добавить ингредиент" id="add_more" class="btn btn-outline-dark me-2">
+        {{ form.non_field_errors }}
+        {% for field in dishes_search_form %}
+          <div class="form-outline form-white mb-4">
+            {% for error in field.errors %}
+              <div class="text-danger">{{ error|escape|linebreaks }}</div>
+            {% endfor %}
+            {{ field.help_text }}
+            {{ field }}
+          </div>
+        {% endfor %}
       </div>
 
       <button class="btn btn-primary px-5 mb-5" type="submit">{% trans "Найти блюдо" %}</button>

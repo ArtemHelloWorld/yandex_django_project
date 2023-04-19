@@ -57,6 +57,8 @@ RATE_LIMIT_MIDDLEWARE = os.getenv(
     '1',
 )
 
+REQUESTS_PER_SECOND = int(os.getenv('REQUESTS_PER_SECOND', 10))
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -120,14 +122,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 LANGUAGES = [
-    ("ru", "Russian"),
-    ("en", "English"),
+    ('ru', 'Russian'),
+    ('en', 'English'),
 ]
 
-TZ_DETECT_COUNTRIES = ("RU", "US", "JP")
+TZ_DETECT_COUNTRIES = ('RU', 'US', 'JP')
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, "locale"),
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
 USE_L10N = True
@@ -199,8 +201,6 @@ TINYMCE_DEFAULT_CONFIG = {
         'preview'
     ),
 }
-
-REQUESTS_PER_SECOND = int(os.getenv("REQUESTS_PER_SECOND", 10))
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

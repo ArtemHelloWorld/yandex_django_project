@@ -72,23 +72,22 @@ class DishSearchView(django.views.generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        dishes_search_formset = dishes.forms.DishesSearchFormSet()
-        context['dishes_search_formset'] = dishes_search_formset
+        dishes_search_form = dishes.forms.DishesSearchForm()
+        context['dishes_search_form'] = dishes_search_form
 
         return context
 
     def post(self, request):
-        dishes_search_formset = dishes.forms.DishesSearchFormSet(request.POST)
+        dishes_search_form = dishes.forms.DishesSearchForm(request.POST)
 
         context = {
-            'dishes_search_formset': dishes_search_formset,
+            'dishes_search_form': dishes_search_form,
         }
 
-        if dishes_search_formset.is_valid():
-            user_ingredients = [
-                ingredient.get('ingredient')
-                for ingredient in dishes_search_formset.cleaned_data
-            ]
+        if dishes_search_form.is_valid():
+            user_ingredients = dishes_search_form.cleaned_data.get(
+                'ingredient'
+            )
 
             dishes_dict = dishes.services.search_dishes_by_ingredients(
                 user_ingredients
