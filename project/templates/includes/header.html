@@ -1,12 +1,12 @@
 {% load static %}
 {% load i18n %}
 
-<header class="p-3 text-bg-dark">
+<header class="p-3 text-bg-black">
 
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="{% url 'home:home' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <img src="{% get_media_prefix %}/logo/logo.svg" class="header-logo">
+        <img src="{% get_media_prefix %}/logo/logo.png" width="150">
       </a>
 
       {% with request.resolver_match.view_name as view_name %}
