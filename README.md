@@ -66,3 +66,7 @@
 * Указать в виртуальном окружении(.env) следующие поля: DJANGO_SUPERUSER_USERNAME; DJANGO_SUPERUSER_EMAIL; DJANGO_SUPERUSER_PASSWORD
 
 * Ввести вручную, добавив в команду аргумент --interactive
+
+<h2>диаграмма базы данных</h2>
+
+![alt text](https://github.com/arsyst/ya-django-project/blob/51e0e7e6188a028107ef3eb7e285e56ae8bc8022/er_models/db.png)
