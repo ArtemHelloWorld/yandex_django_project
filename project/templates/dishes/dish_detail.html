@@ -12,19 +12,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h1 class="mb-4"> {{ dish.name }}</h1>
+      <h1 class="mt-5 mb-3"> {{ dish.name }}</h1>
       {% thumbnail dish.image_main "500" padding=True as image %}
-        <img src="{{ image.url }}" class="img-fluid">
+        <img src="{{ image.url }}" class="img-fluid mb-5">
       {% endthumbnail %}
-      <p>{% trans "Тип:" %} {{ dish.type.name }} | {% trans "Время готовки" %} {{ dish.cooking_time|duration_time_format }} | {% trans "Сложность:" %} {{ dish.complexity }}/5 </p>
-      <div>
-        <strong>{% trans "Тэги:" %}</strong>
-        <p>
-          {% for tag in dish.tags.all %}
-            <a class="p-1 bg-info">{{ tag }}</a>
-          {% endfor %}
-        </p>
-      </div>
+      
       <div class="mb-4">
         <strong>{% trans "Ингредиенты:" %} </strong>
         {% for ingredient in dish.ingredients.all %}
@@ -32,12 +24,30 @@
         {% endfor %}
       </div>
 
+      <p> <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"></path>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"></path>
+      </svg> {{ dish.cooking_time|duration_time_format }} </p>
+
       <div>
         <strong>{% trans "Рецепт:" %} </strong>
         <p>{{ dish.recipe|safe }}</p>
       </div>
 
-      <p>{% trans "Автор" %} <a href="">{{ dish.author.username }}</a> | {{ dish.date_created }}</p>
+      <div>
+        <p>
+          {% for tag in dish.tags.all %}
+            <a class="btn btn-info">{{ tag }}</a>
+          {% endfor %}
+        </p>
+        <p><a class="btn btn-info">{{ dish.type }}</a></p>
+      </div>
+      <p class="mb-5">{% trans "Автор" %} <a href="">{{ dish.author.username }}</a>
+        {% if dish.author.identity_confirmed %}
+          <img src="{% static 'img/identity-confirmed-badge-25.jpg' %}" class="img-fluid">
+        {% endif %} 
+        | {{ dish.date_created }}
+      </p>
     </div>
   </div>
 </div>
