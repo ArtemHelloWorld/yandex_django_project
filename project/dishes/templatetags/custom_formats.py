@@ -26,7 +26,9 @@ def duration_format_time(value):
 
 @register.filter(name='ingredient_quantity_format')
 def duration_format_ingredient(value):
-    quantity = value.quantity
+    quantity = (
+        int(value.quantity) if value.quantity.is_integer() else value.quantity
+    )
     type = value.get_quantity_type_display()
     case_type = (
         pymorphy2.MorphAnalyzer()
