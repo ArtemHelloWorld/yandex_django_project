@@ -1,3 +1,5 @@
+import datetime
+
 import django.conf
 import django.contrib.admin.widgets
 import django.contrib.auth.forms
@@ -63,7 +65,7 @@ class UserForm(
         self.fields[
             'birthday'
         ].widget = django.contrib.admin.widgets.AdminDateWidget(
-            attrs={'type': 'date'}
+            attrs={'type': 'date', 'max': datetime.date.today()}
         )
 
         for field in self.Meta.readonly:

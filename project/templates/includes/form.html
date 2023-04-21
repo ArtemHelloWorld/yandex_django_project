@@ -4,7 +4,7 @@
   {{ error|escape }}
 {% endfor %}
 
-<form action="" method="POST">
+<form enctype="multipart/form-data" method="POST">
   {% csrf_token %}
 
   {% for field in form %}
@@ -12,8 +12,9 @@
       {% for error in field.errors %}
         <div class="text-danger">{{ error|escape|linebreaks }}</div>
       {% endfor %}
+      {{ field.help_text }}
       {{ field }}
     </div>
   {% endfor %}
-  <button class="btn btn-outline-light btn-lg px-5 mb-5" type="submit">{{ btn_text }}</button>
+  <button class="btn btn-primary btn-lg px-5 mb-5" type="submit">{{ btn_text }}</button>
 </form>

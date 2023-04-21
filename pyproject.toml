@@ -1,26 +1,7 @@
 [tool.black]
 line-length = 79
-include = '\.pyi?$'
 skip-string-normalization = true
-exclude = '''
-(
-  /(
-      \.eggs
-    | \.git
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-  )/
-  | README.md
-  | .gitignore
-  | .env
-)
-'''
+
 
 [tool.isort]
 profile = 'black'
