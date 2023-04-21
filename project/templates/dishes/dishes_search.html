@@ -13,26 +13,20 @@
 
 <div class="container pt-4">
   <div class="row">
-    <h1>{% trans "Выберите что есть у вас в холодильнике" %}</h1>
+    <h1>{% trans "Выберите все продукты из вашего холодильника" %}</h1>
     {% trans "Найти блюдо" as btn_text %}
     {% include "includes/form.html" with form=dishes_search_form btn_text=btn_text %}
 
-      {% if dishes_dict %}
-        <h1>{% trans "Вы можете приготовить" %}</h1>
-        {% for dish, ingredients in dishes_dict.items %}
-          <p>{% include "includes/dish_card.html"  with dish=dish %}
-            {% if ingredients|length %}
-              {% trans "Вам нужно докупить:" %} {% for ingredient in ingredients %} {{ ingredient }} {% endfor %}
-            {% else %}
-              {% trans "У вас есть все продукты. Начинаем готовить!" %}
-            {% endif %}</p>
-        {% endfor %}
-      {% endif %}
-      
-      {% if message %}
-        <h1>{{ message }}</h1>
-      {% endif %}
+    {% if message %}
+      <h1>{{ message }}</h1>
+    {% endif %}
 
+    {% if dishes_dict %}
+      <h2>{% trans "Вот что мы подобрали для вас" %}</h2>
+      {% for dish, ingredients_to_buy in dishes_dict.items %}
+        {% include "includes/dish_search_card.html"  with dish=dish ingredients_to_buy=ingredients_to_buy %}  
+      {% endfor %}
+    {% endif %}
     
   </div>
 </div>
