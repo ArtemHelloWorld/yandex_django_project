@@ -4,20 +4,35 @@
 {% load custom_formats %}
 
 
-<div class="col-sm-4">
+<div class="col-lg-4 col-md-6">
   <div class="card mb-3">
+    {% thumbnail dish.image_main "500x500" crop="center" as image %}
+        <img src="{{ image.url }}" class="card-img-top">
+    {% endthumbnail %}
     <div class="card-body">
-      {% thumbnail dish.image_main "500x500" padding=True as image %}
-        <img src="{{ image.url }}" class="img-fluid">
-      {% endthumbnail %}
-      <h5 class="card-title">{{ dish.name }}</h5>
-      <p class="card-text">{% trans "Сложность" %} {{ dish.complexity }}/5</p>
-      <p class="card-text">{% trans "Время готовки" %} {{ dish.cooking_time|duration_time_format }}</p>
-      <p class="card-text">{% trans "Автор" %} {{ dish.author.username }}
-      {% if dish.author.identity_confirmed %}
-        <img src="{% static 'img/identity-confirmed-badge-25.jpg' %}" class="img-fluid">
-      {% endif %}
-      </p>
+      <h5 class="card-title mb-2">{{ dish.name }}</h5>
+      <div class="mb-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-4" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+          <path d="M12 12l3 2"></path>
+          <path d="M12 7v5"></path>
+        </svg> 
+        {{ dish.cooking_time|duration_time_format }}
+      </div>
+      <div class="mb-3">
+        {% trans "Сложность" %}: <span class="fs-5 fw-bold text-{% if dish.complexity < 3 %}success{% elif dish.complexity == 3 %}warning{% else %}danger{% endif %}">
+        {{ dish.complexity }}</span><span style="font-size: 12px;">/5</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="ms-3 icon icon-tabler icon-tabler-user" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+          <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+        </svg>
+        {% trans "Автор" %}: {{ dish.author.username }}
+        {% if dish.author.identity_confirmed %}
+          <img src="{% static 'img/identity-confirmed-badge-25.jpg' %}" class="img-fluid">
+        {% endif %}
+      </div>
       <a href="{{ dish.get_absolute_url }}" class="btn btn-primary">{% trans "Готовить!" %}</a>
     </div>
   </div>

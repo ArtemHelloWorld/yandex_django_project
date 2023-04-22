@@ -9,28 +9,38 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container mt-4">
   <div class="row">
-    <div class="col-md-6">
-      <h1 class="mt-5 mb-3"> {{ dish.name }}</h1>
-      {% thumbnail dish.image_main "500" padding=True as image %}
-        <img src="{{ image.url }}" class="img-fluid mb-5">
-      {% endthumbnail %}
-      
+    <div class="col-md-5">
+      <img src="{{ dish.image_main.url }}" alt="Картинка блюда" class="img-fluid">
+    </div>
+  
+    <div class="col-md-7">
+      <h1 class="mb-3"> {{ dish.name }}</h1>
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+          <path d="M12 12l3 2"></path>
+          <path d="M12 7v5"></path>
+        </svg>
+        {{ dish.cooking_time|duration_time_format }} 
+      </p>
       <div class="mb-4">
-        <strong>{% trans "Ингредиенты:" %} </strong>
-        {% for ingredient in dish.ingredients.all %}
-          <p class="mb-0">{{ ingredient.ingredient.name }} - {{ ingredient|ingredient_quantity_format }}</p>
-        {% endfor %}
+        <h3>{% trans "Ингредиенты:" %}</h3>
+        <ul>
+          {% for ingredient in dish.ingredients.all %}
+            <li class="mb-0">{{ ingredient.ingredient.name }} — {{ ingredient|ingredient_quantity_format }}</li>
+          {% endfor %}
+        </ul>
       </div>
 
-      <p> <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"></path>
-        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"></path>
-      </svg> {{ dish.cooking_time|duration_time_format }} </p>
 
+    </div>
+
+    <div class="col-md-8 col-lg-7 mt-4">
       <div>
-        <strong>{% trans "Рецепт:" %} </strong>
+        <h2>{% trans "Рецепт" %} </h2>
         <p>{{ dish.recipe|safe }}</p>
       </div>
 
